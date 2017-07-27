@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>任务六：通过HTML及CSS模拟报纸排版</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        html,
+        body { height: 100%; background: #c4f1bf; }
+        .newspaper { width: 980px; height: 1386px; margin: 0 auto; padding: 0 44px; box-sizing: border-box; background: #fff; }
+        .head { position: relative; border-bottom: 2px solid #938e8c; }
+        .head .logo { width: 110px; height: 61px; position: relative; background: #d45d5c; color: #fff; }
+        .head .logo p { position: absolute; left: 0; bottom: 0; }
+        .head .time { position: absolute; right: 0; bottom: 0; }
+        .module { margin: 34px 0; }
+        .module-left { width: 641px; height: 301px; position: relative; }
+        .module-left img { width: 100%; }
+        .module-left span { position: absolute; width: 191px; height: 301px; background: rgba(0, 150, 0, .3); }
+        .module-left span.l { left: 0; bottom: 0; }
+        .module-left span.r { right: 0; bottom: 0; }
+        .module-right { width: 203px; height: 301px; border-top: 2px solid #938e8c; position: relative; box-sizing: border-box; }
+        .module-right h1 { font-size: 24px; line-height: 40px; color: #000; text-decoration: underline; }
+        .module-right .detail { color: #676767; font-family: "楷体"; }
+        .module-right .big-txt { font-size: 116px; color: #75b86d; font-style: italic; line-height: 1; }
+        .module-right .b { color: #cc8091; position: absolute; bottom: 0; }
+        .module-right .b > span { display: inline-block; line-height: 1; }
+        .module-right .b > span:first-child { font-size: 55px; }
+        .module-right .b-txt > p:first-child { font-size: 21px; }
+        .module-right .b-txt { display: inline-block; }
+        .what h3,
+        .when h3,
+        .how h3 { font-size: 16px; color: #418c59; font-weight: 600; text-decoration: underline; }
+        .what p,
+        .when p,
+        .how p { color: #767777; line-height: 16px; }
+        .wwh > div { float: left; margin-right: 28px; }
+        .what { width: 228px; }
+        .when { width: 204px; }
+        .how { width: 131px; }
+        .how .wide { margin-top: 20px; }
+        .wide span { font-style: italic; color: #cd4a48; opacity: .7; }
+        .article-l { width: 415px; }
+        .article-l h1 { font-size: 42px; color: #11456b; font-family: "黑体"; font-weight: 700; line-height: 1; padding-bottom: 10px; border-bottom: 2px solid #11456b; }
+        .article-l .one { font-size: 72px; color: #f5e327; font-style: italic; }
+        .article-l .last { font-size: 33px; }
+        .article > p { text-indent: 2em; color: #767777; }
+        .article > p:first-child { text-indent: 0; }
+        .article span { float: left; line-height: 1; padding: 0 10px 10px 0; font-size: 70px; color: #f5e327; }
+        .article { padding: 20px 0; }
+        .article img { width: 226px; height: 300px; }
+    </style>
+</head>
+<body>
+<div class="newspaper">
+    <header class="head">
+        <div class="logo">
+            <p>ife.baidu.com</p>
+        </div>
+        <span class="time">2017.07.17</span>
+    </header>
+    <main>
+        <section class="module clearfix">
+            <div class="module-left fl">
+                <img src="images/pic1.png" alt="">
+                <span class="l"></span>
+                <span class="r"></span>
+            </div>
+            <div class="module-right fr">
+                <h1>
+                    About <br>
+                    Technologe
+                </h1>
+                <p class="detail">About technologe About technologe About technologe</p>
+                <p class="big-txt">700</p>
+                <div class="b">
+                    <span>3.2</span>
+                    <div class="b-txt">
+                        <p>css</p>
+                        <p>cssdghwcs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="module wwh clearfix">
+            <div class="what">
+                <h3>what</h3>
+                <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+            </div>
+            <div class="when">
+                <h3>what</h3>
+                <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+            </div>
+            <div class="how">
+                <h3>what</h3>
+                <p>前端前端前端前端
+                    前端前端前端
+                    前端</p>
+                <ul class="wide">
+                    <li>What-------- <span>40%</span></li>
+                    <li>What-------- <span>30%</span></li>
+                    <li>What-------- <span>30%</span></li>
+                </ul>
+            </div>
+        </section>
+        <section class="module">
+            <div class="article-l">
+                <h1>
+                    <span class="one">THE</span>
+                    TECHNOLOGE OF FRONT
+                    <p class="last">前端技术领域</p>
+                </h1>
+                <div class="article">
+                    <p class="clearfix">
+                        <span>前</span>端前端前端前端前端前端前端前端前端前端前端前端前端前端前 前端前端前端前端前端前端前端前端前端前端前端前端前端前端 端前端前端前端前端前端前端前端前端前端前端前端前端前端前 端前端前端前端前端前端前端前端前端前端前端前端前端前端前 前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                        前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 </p>
+                    <img src="images/img_two.jpg" alt="" class="fr">
+                    <p>前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前。
+                        前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端
+                    </p>
+                    <p>前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端
+                        前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端 前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                    </p>
+                    </p>
+                </div>
+                <div class="article-r">
+                </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

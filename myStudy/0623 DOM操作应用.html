@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>0622 DOM基础</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <!--<script src="js/jquery-3.1.1.min.js"></script>-->
+    <script>
+        /* 创建节点：document.createElement('li')
+         插入节点：a.appendChild()
+
+         */
+        window.onload = function () {
+            var oInp = document.getElementById('inp'),
+                oBtn = document.getElementById('btn1'),
+                oUl = document.getElementById('ul1'),
+                aA = document.getElementsByTagName('a');
+            for (var i = 0; i < aA.length; i++) {
+                aA[i].onclick = function () {
+                    oUl.removeChild(this.parentNode)//删除子节点
+                }
+            }
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<input type="text" name="" id="inp">
+<input id="btn1" type="button" value="创建li">
+<ul id="ul1">
+    <li>元素<a href="javascript:;">删除</a></li>
+    <li>元素<a href="javascript:;">删除</a></li>
+    <li>元素<a href="javascript:;">删除</a></li>
+    <li>元素<a href="javascript:;">删除</a></li>
+    <li>元素<a href="javascript:;">删除</a></li>
+    <li>元素<a href="javascript:;">删除</a></li>
+</ul>
+</body>
+</html>

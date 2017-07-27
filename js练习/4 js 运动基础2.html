@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>4 js运动基础2</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        #div1 { width: 100px; height: 100px; text-align: center; cursor: pointer; background: #333; color: #fff; position: absolute; right: 0; bottom: 0; }
+    </style>
+    <!--   <script>
+           window.onscroll = function () {
+               var oDiv = document.getElementById('div1'),
+                   scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+               /*          document.title = document.documentElement.clientHeight + ',' + document.body.scrollTop + ',' + document.documentElement.scrollTop + ',' + document.body.clientHeight + ',' + window.innerHeight + ',' + document.documentElement.clientHeight;*/
+   //            starMove(document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop)
+               startMove(document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop)
+           };
+           var timer = null;
+
+           function startMove(iTarget) {
+               var oDiv = document.getElementById('div1');
+               clearInterval(timer);
+               timer = setInterval(function () {
+                   var speed = (iTarget - oDiv.offsetTop) / 4;
+                   speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                   if (oDiv.offsetTop == iTarget) {
+                       clearInterval(timer)
+                   } else {
+                       oDiv.style.top = oDiv.offsetTop + speed + 'px'
+                   }
+               }, 30)
+           }
+       </script>-->
+    <script>
+        window.onscroll = function () {
+            var oDiv = document.getElementById('div1');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            //oDiv.style.top=document.documentElement.clientHeight-oDiv.offsetHeight+scrollTop+'px';
+            startMove(document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop);
+        };
+
+        var timer = null;
+
+        function startMove(iTarget) {
+            var oDiv = document.getElementById('div1');
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var speed = (iTarget - oDiv.offsetTop) / 4;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (oDiv.offsetTop == iTarget) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv.style.top = oDiv.offsetTop + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body style="height: 2000px;">
+<div id="div1">div1</div>
+</body>
+</html>

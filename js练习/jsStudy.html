@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>js</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        ul, ol { list-style: none; }
+        /* css reset */
+        .slide { position: relative; display: table; margin: 0 auto; }
+        .slide a { display: inline-block; padding: 0 5px; font-size: 26px; text-align: center; position: absolute; color: #fff; background: rgba(0, 0, 0, .2); cursor: pointer; }
+        .prev { position: absolute; left: 0; top: 50%; }
+        .next { position: absolute; right: 0; top: 50%; }
+        nav { display: table; margin: 0 auto; position: relative; top: -30px; }
+        nav span { display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center; background: #666; color: #fff; margin-right: 10px; cursor: pointer; }
+        .ac { background: #d01d47; }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <img src="images/1-1.png" alt="" class="slide-img">
+    <a class="prev"><</a>
+    <a class="next">></a>
+    <nav></nav>
+</div>
+<script>
+
+    var imgarr = ['images/1.png', 'images/2.png', 'images/3.png'],
+        prev = document.getElementsByClassName('prev')[0],
+        next = document.getElementsByClassName('next')[0],
+        slideImg = document.getElementsByClassName('slide-img')[0],
+        slide = document.getElementsByClassName('slide')[0],
+        nav = document.getElementsByTagName('nav')[0],
+        sp = nav.getElementsByTagName('span'),
+        num = 0;
+    for (var i = 0; i < imgarr.length; i++) {
+        nav.innerHTML += '<span>' + (i + 1) + '</span>';
+    }//循环生成下标数字
+    sp[0].setAttribute('class', 'ac'); //初识设置第一个为选中状态
+    for (var i = 0; i < imgarr.length; i++) {
+        sp[i].index = i;
+        sp[i].onmouseover = function () {
+            for (var j = 0; j < imgarr.length; j++) {
+                sp[j].className = ''
+            }
+            num = this.index;
+            this.className = 'ac';
+            slideImg.src = imgarr[num]
+        }//鼠标经过事件
+    }//for循环鼠标经过事件
+    next.onclick = function () {
+        num++;
+        if (num == imgarr.length) {
+            num = 0
+        }
+        slideImg.src = imgarr[num];
+        for (var j = 0; j < imgarr.length; j++) {
+            sp[j].className = ''
+        }
+        sp[num].className = 'ac'
+    };//下一张
+    prev.onclick = function () {
+        num--;
+        if (num < 0) {
+            num = imgarr.length - 1;
+        }
+        slideImg.src = imgarr[num];
+        for (var j = 0; j < imgarr.length; j++) {
+            sp[j].className = ''
+        }
+        sp[num].className = 'ac'
+    }//上一张
+</script>
+</body>
+</html>

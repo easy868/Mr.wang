@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>2 js基础应用</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        /*     #d1 { width: 100px; height: 100px; line-height: 100px; float: left; text-align: center; background: #333; color: #fff; cursor: pointer; }
+               #d2 { height: 300px; line-height: 100px; margin-left: 110px; text-align: center; background: #999; color: #fff; cursor: pointer; display: none; }*/
+        #u { overflow: hidden; width: 200%; position: absolute; top: 0; left: 0; }
+        #box { position: relative; width: 648px; height: 288px; background: #333; border: 1px solid #d01d47; overflow: hidden; margin: 160px auto; }
+        ul li { float: left; }
+    </style>
+</head>
+<body>
+<!--<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>-->
+<!--隔行变色-->
+<!--<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">:
+<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">:
+<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">-->
+<!--<div id="d1">d1</div>
+<div id="d2">d2</div>-->
+<!--图片时钟-->
+<div id="box">
+    <ul id="u">
+        <li><img src="images/1-1.png" alt=""></li>
+        <li><img src="images/1-2.png" alt=""></li>
+        <li><img src="images/1-3.png" alt=""></li>
+    </ul>
+</div>
+<a id="goLeft" href="javascript:;">向左</a>
+<a id="goRight" href="javascript:;">向右</a>
+<!--js-->
+<script>
+    /*  var aLi = document.getElementsByTagName('li');
+     for (var i = 0; i < aLi.length; i++) {
+     if (i % 2 === 0) {
+     aLi[i].style.background = 'red'
+     } else {
+     aLi[i].style.background = '#ccc'
+     }
+     }*///隔行变色
+    /*    var a = 10;
+     switch (a) {
+     case 10:
+     a = a + 10;
+     break;
+     case 2:
+     break;
+     default:
+     alert('不知道')
+     }*/
+    //    2 > 1 ? alert(1) : alert(2)
+    /*   var json = {a: 1, b: 2, c: 3};
+     for (var i in json) {
+     alert(json[i])
+     }*///json格式,for in循环
+    /*    function sum() {
+     var result = 0;
+     for (var i = 0; i < arguments.length; i++) {
+     result += arguments[i]
+     }
+     return result
+     }
+     alert(sum(1, 2, 3, 5, 4, 6, 6, 7, 8, 9))*/ //arguments应用
+    /*    var d1 = document.getElementById('d1');
+     function getStyle(obj, name) {
+     if (obj.currentStyle) {
+     return obj.currentStyle[name]
+     } else {
+     return getComputedStyle(d1, null)[name]
+     }
+     }//封装函数获取非行间样式，兼容IE9以下。
+     alert(getStyle(d1, 'width'))*/
+    /*    var arr = [1, 2, 3, 4];
+     arr.splice(0, 2, 66);
+     alert(arr)*/
+    //  pop() 从尾部删除;
+    //  shift() 从头部删除；
+    //  push() 从尾部添加;
+    //  unshift() 从头部添加
+    //splice(0,2,66) 分割，从第几个开始，删除几个，或者添加
+    /*   function toDou(n) {
+     if (n < 10) {
+     return '0' + n
+     } else {
+     return '' + n
+     }
+     }
+     setInterval(function () {
+     var nowDate = new Date(),
+     h = nowDate.getHours(),
+     m = nowDate.getMinutes(),
+     s = nowDate.getSeconds(),
+     aImg = document.getElementsByTagName('img'),
+     str = '' + toDou(h) + toDou(m) + toDou(s);
+     for (var i = 0; i < aImg.length; i++) {
+     aImg[i].src = 'images/' + str.charAt(i) + '.png'
+     }
+     });*///图片时钟
+    /*   var d1 = document.getElementById('d1'),
+     d2 = document.getElementById('d2'),
+     timer = null;
+     d1.onmouseover = d2.onmouseover = function () {
+     d2.style.display = 'block';
+     clearTimeout(timer)
+     };
+     d1.onmouseout = d2.onmouseout = function () {
+     timer = setTimeout(function () {
+     d2.style.display = 'none'
+     }, 1000)
+     };*///延时提示
+    var box = document.getElementById('box'),
+        u = document.getElementById('u'),
+        left = document.getElementById('goLeft'),
+        right = document.getElementById('goRight'),
+        speed = 2;
+    u.innerHTML += u.innerHTML;
+
+    function move() {
+        if (u.offsetLeft < -u.offsetWidth / 2) {
+            u.style.left = 0 + 'px'
+        } else if (u.offsetLeft > 0) {
+            u.style.left = -u.offsetWidth / 2 + 'px'
+        }
+        u.style.left = u.offsetLeft + speed + 'px'
+    }
+
+    setInterval(move, 30);
+    left.onclick = function () {
+        speed = -2
+    };
+    right.onclick = function () {
+        speed = 2
+    }
+</script>
+</body>
+</html>

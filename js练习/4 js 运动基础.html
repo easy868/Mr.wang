@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>4 js运动基础</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        #div1 { width: 100px; line-height: 200px; text-align: center; cursor: pointer; background: #333; color: #fff; position: absolute; left: 0; }
+        #div2 { border: 1px solid green; height: 300px; position: absolute; left: 300px; color: #ccc; }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function () {
+                starMove(300)
+            }
+        };
+
+        function starMove(iTarget) {
+            var oDiv = document.getElementById('div1');
+            setInterval(function () {
+                var speed = (iTarget - oDiv.offsetLeft) / 10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                document.title = oDiv.offsetLeft + ',' + speed;//标题显示偏移距离和速度。
+            }, 30)
+        }//缓冲运动
+    </script>
+</head>
+<body>
+<input id="btn" type="button" value="运动">
+<div id="div1">div1</div>
+<div id="div2">300</div>
+</body>
+</html>

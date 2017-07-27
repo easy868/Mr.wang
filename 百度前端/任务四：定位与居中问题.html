@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>任务四：定位与居中问题</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .main { width: 400px; height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #5bc0de; }
+        .circle { width: 50px; height: 50px; line-height: 50px; border-radius: 0 0 100% 0; position: absolute; background: #ff0; }
+        .main .b { bottom: 0; right: 0; border-radius: 100% 0 0 0; }
+    </style>
+</head>
+<body>
+<main class="main">
+    <div class="circle">circle1</div>
+    <div class="circle b">circle2</div>
+</main>
+</body>
+</html>

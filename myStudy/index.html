@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>js轮播</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        span { cursor: pointer; }
+        #idx { display: table; margin: 0 auto; }
+        #idx li { float: left; margin-right: 10px; width: 30px; height: 30px; line-height: 30px; text-align: center; background: #999; color: #fff; }
+        #idx li.ac { background: #d01d47; }
+        .prev { position: absolute; top: 10%; left: 10px; font-size: 30px; }
+        .next { position: absolute; top: 10%; right: 10px; font-size: 30px; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <ul id="banner">
+        <li><img src="imgtest/b1.png" alt="" width="100%"></li>
+    </ul>
+    <span class="prev"><</span>
+    <span class="next">></span>
+    <ol id="idx" class="clearfix"></ol>
+</div>
+<!--以下为js区域-->
+<script>
+
+    function slideShow() {
+        var ban = document.getElementById('banner'),
+            im = ban.getElementsByTagName('img')[0],
+            aol = document.getElementById('idx'),
+            aol_li = aol.getElementsByTagName('li'),
+            imgarr = ["imgtest/b1.png", "imgtest/b2.png", "imgtest/b3.png"],
+            prev = document.getElementsByClassName('prev')[0],
+            next = document.getElementsByClassName('next')[0],
+            num = 0;
+
+        for (var i = 0; i < imgarr.length; i++) {
+            aol.innerHTML += '<li>' + (i + 1) + '</li>'
+        }
+        aol_li[0].className = 'ac';
+        next.onclick = function () {
+            num++;
+            if (num > imgarr.length - 1) {
+                num = 0;
+            }
+            tab();
+        };
+        prev.onclick = function nextClick() {
+            num--;
+            if (num < 0) {
+                num = imgarr.length - 1;
+            }
+            tab()
+        };
+        for (var i = 0; i < imgarr.length; i++) {
+            aol_li[i].idx = i;
+            aol_li[i].onmouseover = function () {
+                num = this.idx;
+                tab();
+            }
+        }
+
+        function tab() {
+            for (var j = 0; j < imgarr.length; j++) {
+                aol_li[j].className = '';
+            }
+            im.src = imgarr[num];
+            aol_li[num].className = 'ac';
+        }
+    }
+
+    slideShow();
+</script>
+</body>
+</html>

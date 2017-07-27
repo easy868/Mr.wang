@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQ轮播</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; }
+        ul, li { list-style: none; }
+        img { width: 100%; vertical-align: top; }
+        a { display: block; }
+        .slideShow { width: 186px; margin: 100px auto; overflow: hidden; position: relative; }
+        .slideShow > ul { width: 1000px; overflow: hidden; position: relative; }
+        .slideShow > ul > li { float: left; width: 186px; }
+        .slideShow .nav { width: 88px; position: absolute; bottom: 8px; left: 25%; }
+        .nav span { width: 18px; height: 18px; line-height: 18px; display: inline-block; border-radius: 50%; text-align: center; background: rgba(0, 0, 0, .5); color: #fff; font-size: 12px; margin-left: 4px; cursor: pointer; }
+        .nav .active { background: #000; }
+    </style>
+</head>
+<body>
+<div class="slideShow">
+    <ul>
+        <li><a href="###"><img src="images/1.png" alt=""></a></li>
+        <li><a href="###"><img src="images/2.png" alt=""></a></li>
+        <li><a href="###"><img src="images/3.png" alt=""></a></li>
+        <li><a href="###"><img src="images/4.png" alt=""></a></li>
+    </ul>
+    <div class="nav"><span class="active">1</span><span>2</span><span>3</span><span>4</span></div>
+</div>
+<script>
+    var slide = $('.slideShow'),
+        ul = slide.find('ul'),
+        span = slide.find('.nav span'),
+        oneWidth = ul.find('li').eq(0).width(),
+        iNow = 0,
+        timer = null;
+    //先声明变量，方便操作
+    span.on('click', function () {
+        span.removeClass('active');
+        $(this).addClass('active');
+        iNow = $(this).index();
+        ul.animate({
+            'left': -oneWidth * iNow
+        });
+    });//小圆点的点击事件
+    function autoPlay() {
+        timer = setInterval(function () {
+            iNow++;
+            if (iNow > span.length - 1) {
+                iNow = 0;
+            }
+            span.eq(iNow).trigger('click')
+        }, 1000)
+    }//定时器函数。
+    autoPlay(); //轮播函数执行。
+    slide.hover(function () {
+        clearInterval(timer)
+    }, autoPlay); //鼠标悬浮事件和移除事件。
+</script>
+</body>
+</html>

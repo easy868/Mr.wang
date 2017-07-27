@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value>
+        <option name="RIGHT_MARGIN" value="168" />
+        <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+        <CssCodeStyleSettings>
+          <option name="BLANK_LINES_BETWEEN_BLOCKS" value="0" />
+          <option name="KEEP_SINGLE_LINE_BLOCKS" value="true" />
+        </CssCodeStyleSettings>
+      </value>
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
+  </component>
+</project>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>my test</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <!--<script src="js/jquery-3.1.1.min.js"></script>-->
+    <script>
+        window.onload = function () {
+            function toDouble(n) {
+                if (n < 10) {
+                    return '0' + n;
+                } else {
+                    return '' + n;
+                }
+            }//转换成两位数
+
+            var aImg = document.getElementsByTagName('img');
+
+            function clock() {
+                var nowDate = new Date(),
+                    hours = nowDate.getHours(),
+                    minutes = nowDate.getMinutes(),
+                    seconds = nowDate.getSeconds(),
+                    clockStr = toDouble(hours) + toDouble(minutes) + toDouble(seconds);//时、分、秒组成6位数字符串
+                for (var i = 0; i < aImg.length; i++) {
+                    aImg[i].src = 'images/' + clockStr.charAt(i) + '.png';//图片的地址下标和时间字符串的下标相对应
+                }
+            }
+
+            clock();//先执行下函数，避免刷新时显示00:00:00
+            setInterval(clock, 1000);//定时器，一秒执行一次
+        }//图片轮播
+    </script>
+    <style>
+        body { background: #333; color: #fff; }
+    </style>
+</head>
+<body>
+<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">
+:
+<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">
+:
+<img src="images/0.png" alt="">
+<img src="images/0.png" alt="">
+</body>
+</html>

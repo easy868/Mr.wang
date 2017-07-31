@@ -1,14 +1,11 @@
-html { font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei" sans-serif; }
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, input, form, a, p, textarea { margin: 0; padding: 0; font-size: 100%; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, input, textarea, button, form, a, p, table, th, td { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 ul, ol, li { list-style: none; }
 a { text-decoration: none; }
-img { vertical-align: middle; }
+img { vertical-align: top; }
 .clearfix:after { content: ''; display: block; height: 0; visibility: hidden; clear: both; }
+body { color: #333; }
+body { font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; }
 /*重置样式 css reset*/
 .fl { float: left; }
 .fr { float: right; }
-.msg { color: #FFF; width: 100%; margin: 0 auto; height: 28px; line-height: 28px; text-align: center; font-size: 12px; position: fixed; top: 50%; z-index: 20; display: none; }
-.msg_success { background-color: rgba(0, 0, 0, .3) }
-.msg_warning { background-color: #e94b35; }
-.msg_primary { background-color: #337ab7; }
-.msg_info { background-color: #5bc0de; }

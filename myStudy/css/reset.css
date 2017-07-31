@@ -7,3 +7,8 @@ img { vertical-align: middle; }
 /*重置样式 css reset*/
 .fl { float: left; }
 .fr { float: right; }
+.msg { color: #FFF; width: 100%; margin: 0 auto; height: 28px; line-height: 28px; text-align: center; font-size: 12px; position: fixed; top: 50%; z-index: 20; display: none; }
+.msg_success { background-color: rgba(0, 0, 0, .3) }
+.msg_warning { background-color: #e94b35; }
+.msg_primary { background-color: #337ab7; }
+.msg_info { background-color: #5bc0de; }

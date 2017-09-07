@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <style>
         #main { position: relative; margin: auto; background: #f0f0f0; text-align: center; color: #666; }
-        .item { position: absolute; padding: 10px; }
+        .item { position: absolute; padding: 10px; width:50%;box-sizing:border-box; }
         .pic { padding: 10px 10px 0 10px; box-shadow: 2px 2px 2px rgba(0, 0, 0, .5); background: #f9f9f9; }
-        .pic img { display: block; }
+        .pic img { display: block; width:100%; }
         #go-top { width: 0; position: fixed; bottom: 40px; right: 20px; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid #5bc0de; display: none; box-shadow: 1px 1px 1px 1px #999; }
         /*回到顶部*/
     </style>
@@ -152,9 +152,8 @@
         var oParent = document.getElementById(parent),
             aChild = oParent.getElementsByClassName(child),
             oneWidth = aChild[0].offsetWidth, //获取一个子元素宽度
-            cols = Math.floor(document.documentElement.clientWidth / oneWidth), //能放下的列数
+            cols = 2, //能放下的列数
             aHeight = []; //存储每列高度的数组
-        oParent.style.width = cols * oneWidth + 'px';
         for (var i = 0; i < aChild.length; i++) {
             if (i < cols) {
                 aChild[i].style.top = 0;

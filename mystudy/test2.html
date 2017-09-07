@@ -7,14 +7,20 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no,email=no" name="format-detection">
     <title>test2</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
     <style>
-
+        div{ width:30px; height:30px;background:#0f0; margin:20px; float: left; position: absolute;}
     </style>
 </head>
 <body>
 <script>
-
+    var str='';
+    for(var i=0;i<10;i++){
+        for(var j=0;j<10;j++){
+            str+='<div style="top:'+i*70+'px;left:'+j*70+'px;">'+(i*10+1+j)+'</div>'
+        }
+    }
+    document.body.innerHTML=str;
 </script>
 </body>
 </html>

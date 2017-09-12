@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>bootstrap demo</title>
+    <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">col-sm-6</div>
+        <div class="col-sm-4 col-sm-offset-5">col-sm-6
+            <div class="row col-sm-push-6">
+                <div class="col-sm-6">嵌套列</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form action="">
+        <div class="form-group">
+            <label for="">用户名</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">密码</label>
+            <input type="password" name="" id="" class="form-control">
+        </div>
+    </form>
+    <h1>h1标题
+        <small>小标签</small>
+    </h1>
+    <p class="lead text-justify">lead突出段落</p>
+    <table class="table table-bordered table-striped table-hover table-condensed">
+        <thead>
+        <tr class="active">
+            <th>标题1</th>
+            <th>标题2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="success">
+            <td>011我是一个饼，咱们老百姓啊</td>
+            <td>021</td>
+        </tr>
+        <tr class="info">
+            <td>011</td>
+            <td>021</td>
+        </tr>
+        <tr>
+            <td class="warning">011</td>
+            <td>021</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr class="danger">
+            <th>01</th>
+            <th>02</th>
+        </tr>
+        </tfoot>
+    </table>
+    <form action="" class="">
+        <div class="form-group">
+            <label for="">这里是label，没有类名</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" name="" id="">多选项
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default">提交</button>
+        <div class="form-group">
+            <label for="">文字</label>
+            <p class="form-control-static">纯文本的</p>
+        </div>
+
+            <div class="form-group has-error">
+                <label for="" class="control-label">禁用的输入框</label>
+                <input type="text" class="form-control" value="zhidu">
+                <p class="help-block">帮助文本</p>
+            </div>
+
+    </form>
+    <p class="bg-info">文本样式</p>
+    <button type="button" class="close"></button>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, input, textarea, button, form, a, p, table, th, td { margin: 0; padding: 0; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
-ul, ol, li { list-style: none; }
+ul, ol, li { list-style:none;}
 a { text-decoration: none; }
 img { vertical-align: middle; }
 .clearfix:after { content: ''; display: block; height: 0; visibility: hidden; clear: both; }

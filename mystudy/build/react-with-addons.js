@@ -6579,7 +6579,7 @@
                 unmountIDFromEnvironment: null,
 
                 /**
-                 * Optionally injectable hook for swapping out mount images in the middle of
+                 * Optionally injectable hook for swapping out mount img in the middle of
                  * the tree.
                  */
                 replaceNodeWithMarkupByID: null,

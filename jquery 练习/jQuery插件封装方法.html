@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>jQuery插件封装方法</title>
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+<div class="test">测试文字，来测试效果</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+    * 初始时间：2017/09/25
+    * 功能：刚开始学习写插件，熟悉插件的基本格式，实现修改css样式的功能。
+    * 感受：要注意插件的格式，$.fn.extend({ plujinName:function(){};})和$.fn.pluginName=function(){}；两种格式都可以。
+    * */
+    (function ($) {
+        $.fn.myPlu = function (options) { //$.fn.pluginName=function(){},是jq插件的方法，fn后面写插件的名字，传一个对象options。
+            var defaults = {
+                bg: '#333',
+                color: '#fff',
+                fontSize: '30px',
+                lineHeight: '1.5'
+            };//定义默认参数/样式。
+            var opt = $.extend({}, defaults, options); //$.extend用来扩展对象，实现调用时传参改变属性或使用默认值。
+            this.each(function () {
+                var $this = $(this);//当前对象。
+                $this.css({
+                    background: opt.bg,
+                    color: opt.color,
+                    fontSize: opt.fontSize,
+                    lineHeight: opt.lineHeight
+                });
+            });
+            return this;//return this，返回jQuery对象，方便链式操作。
+        };
+    })(jQuery);  //匿名自执行函数包起来，传递一个参数jQuery，用$接收。
+    $(function () {
+//        $('.test').myPlu();//调用插件，使用默认样式。
+        $('.test').myPlu({
+            bg: 'red'
+        }); //调用插件，自定义样式。
+    });//$(function(){})等价于$(document).ready(function(){})，表示页面dom加载完成后执行（不包括图片等加载完成）。
+</script>
+</body>
+</html>

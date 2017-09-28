@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue 简易留言板</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body style="background: #f1f1f1;">
+<div class="container" id="box">
+    <form role="form">
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" class="form-control" id="username" placeholder="请输入用户名" v-model="username" autofocus>
+        </div>
+        <div class="form-group">
+            <label for="age">用户名</label>
+            <input type="text" class="form-control" id="age" placeholder="请输入年龄" v-model="age">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" type="reset">重置</button>
+            <button class="btn btn-info" type="button" v-on:click="add">添加</button>
+        </div>
+    </form>
+    <!--表单输入框-->
+    <table class="table table-bordered table-hover text-center">
+        <caption>用户信息表</caption>
+        <tr>
+            <th>序号</th>
+            <th>名字</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        <tbody>
+        <tr v-for="(v,idx) in myData">
+            <td>{{idx+1}}</td>
+            <td>{{v.name}}</td>
+            <td>{{v.age}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#lay" v-on:click="nowIdx=idx;infoTxt='确认删除吗？'">删除</button>
+            </td>
+        </tr>
+        <tr v-show="myData.length!=0">
+            <td colspan="4" class="text-center">
+                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#lay" v-on:click="nowIdx=-100;infoTxt='确认删除全部吗？'">删除全部</button>
+            </td>
+        </tr>
+        <tr v-show="myData.length==0">
+            <td colspan="4" class="text-center">暂无数据</td>
+        </tr>
+        </tbody>
+    </table>
+    <!--table数据表格-->
+    <div class="modal fade" id="lay" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h5>{{infoTxt}}</h5>
+                </div>
+                <div class="modal-body text-right">
+                    <button class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button class="btn btn-danger" data-dismiss="modal" v-on:click="deleteMsg(nowIdx)">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框-->
+</div>
+<script>
+    $(function () {
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                username: '',
+                age: '',
+                myData: [{name: '王', age: 17}],
+                nowIdx: -100,
+                infoTxt: '确认删除吗？'
+            },
+            methods: {
+                add: function () {
+                    this.myData.push({
+                        name: this.username,
+                        age: this.age
+                    });
+                    this.username = '';
+                    this.age = '';
+                },
+                deleteMsg: function (n) {
+                    if (n == -100) {
+                        this.myData = [];
+                    } else {
+                        this.myData.splice(n, 1)
+                    }
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "browserslist": [
+    "iOS >= 8",
+    "Android > 4"
+  ]
+}

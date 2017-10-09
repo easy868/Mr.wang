@@ -22,42 +22,44 @@
 <body>
 <div class="slideShow">
     <ul>
-        <li><a href="###"><img src="img/1.png" alt=""></a></li>
-        <li><a href="###"><img src="img/2.png" alt=""></a></li>
-        <li><a href="###"><img src="img/3.png" alt=""></a></li>
-        <li><a href="###"><img src="img/4.png" alt=""></a></li>
+        <li><a href="#"><img src="img/1.png" alt=""></a></li>
+        <li><a href="#"><img src="img/2.png" alt=""></a></li>
+        <li><a href="#"><img src="img/3.png" alt=""></a></li>
+        <li><a href="#"><img src="img/4.png" alt=""></a></li>
     </ul>
     <div class="nav"><span class="active">1</span><span>2</span><span>3</span><span>4</span></div>
 </div>
 <script>
-    var slide = $('.slideShow'),
-        ul = slide.find('ul'),
-        span = slide.find('.nav span'),
-        oneWidth = ul.find('li').eq(0).width(),
-        iNow = 0,
-        timer = null;
-    //先声明变量，方便操作
-    span.on('click', function () {
-        span.removeClass('active');
-        $(this).addClass('active');
-        iNow = $(this).index();
-        ul.animate({
-            'left': -oneWidth * iNow
-        });
-    });//小圆点的点击事件
-    function autoPlay() {
-        timer = setInterval(function () {
-            iNow++;
-            if (iNow > span.length - 1) {
-                iNow = 0;
-            }
-            span.eq(iNow).trigger('click')
-        }, 1000)
-    }//定时器函数。
-    autoPlay(); //轮播函数执行。
-    slide.hover(function () {
-        clearInterval(timer)
-    }, autoPlay); //鼠标悬浮事件和移除事件。
+    $(document).ready(function () {
+        var slide = $('.slideShow'),
+            ul = slide.find('ul'),
+            span = slide.find('.nav span'),
+            oneWidth = ul.find('li').eq(0).width(),
+            iNow = 0,
+            timer = null;
+        //先声明变量，方便操作
+        span.on('click', function () {
+            span.removeClass('active');
+            $(this).addClass('active');
+            iNow = $(this).index();
+            ul.animate({
+                'left': -oneWidth * iNow
+            });
+        });//小圆点的点击事件
+        function autoPlay() {
+            timer = setInterval(function () {
+                iNow++;
+                if (iNow > span.length - 1) {
+                    iNow = 0;
+                }
+                span.eq(iNow).trigger('click')
+            }, 1000)
+        }//定时器函数。
+        autoPlay(); //轮播函数执行。
+        slide.hover(function () {
+            clearInterval(timer)
+        }, autoPlay); //鼠标悬浮事件和移除事件。
+    })
 </script>
 </body>
 </html>

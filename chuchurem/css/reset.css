@@ -1,8 +1,0 @@
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, input, form, a, p, textarea { margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; }
-ul, ol, li { list-style: none; }
-a { text-decoration: none; display: block; color: #333; }
-img { border: none; display: block; }
-.clearfix { zoom: 1; }
-.clearfix:after { display: block; height: 0; clear: both; visibility: hidden; content: ''; }
-body { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; }
-/*重置样式   css reset */

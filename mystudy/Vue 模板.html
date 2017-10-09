@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue 模板</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <!--<script src="js/jquery-3.2.1.js"></script>-->
+    <script src="js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body style="background: #f1f1f1;">
+<div id="box">
+    <input type="text" v-model="name">
+    <div v-once>{{name}}</div>
+    <div v-if="seen">{{name}}</div>
+    <div v-show="seen">{{name}}</div>
+    <div v-for="t in todos">{{t.text}}</div>
+    <!-- 创建一个 todo-item 组件的实例 -->
+    <todo-item v-for="item in todos" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    <todo-list v-for="item in todos" v-bind:todo="item" v-bind:key="item.id"></todo-list>
+    <div v-html="ahtml" :id="name" :class="{active:seen,ac2:seen}" :style="obj" v-if="false">12</div>
+    <template v-if="false">
+        <h1>你好</h1>
+        <h2>你好2</h2>
+        <h3>你好3</h3>
+    </template>
+    <template v-else>
+        <em>else语句</em>
+        <i>else语句2</i>
+    </template>
+</div>
+
+<script>
+    $(function () {
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{todo.text}}</li>'
+        });// 定义一个模板，props、template是关键字
+        Vue.component('todo-list', {
+            props: ['todo'],
+            template: '<div>{{todo.text}}</div>'
+        });
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                name: '王',
+                seen: true,
+                todos: [{id: 0, text: 'HTML'}, {id: 1, text: 'css'}, {id: 2, text: 'js'}],   //模板数据写在父元素data里，并不是写在模板里。
+                ahtml: '<strong>你好啊</strong>',
+                obj: {
+                    fontSize: '30px',
+                    color: '#f00'
+                }
+            }
+        });
+    })
+
+</script>
+</body>
+</html>

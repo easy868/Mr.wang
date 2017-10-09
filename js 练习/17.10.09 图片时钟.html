@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>js 图片时钟</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .clock { padding: 30px; text-align: center; background: #333; font-size: 30px; color: #fff; }
+    </style>
+</head>
+<body>
+<div class="clock">
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">:
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">:
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">
+</div>
+<script>
+    var oClock = document.getElementsByClassName('clock')[0],
+        aImg = oClock.getElementsByTagName('img');
+    function ticks() {
+        var oDate = new Date(),
+            h = oDate.getHours(),
+            m = oDate.getMinutes(),
+            s = oDate.getSeconds();
+        var str = '' + toDouble(h) + toDouble(m) + toDouble(s);//把时间存储为字符串。
+        for (var i = 0; i < aImg.length; i++) {
+            aImg[i].src = 'images/' + str[i] + '.png';
+        }
+        function toDouble(n) {
+            return n < 10 ? n = '0' + n : n;
+        } //转化为两位数字。
+    }
+    var clock = setInterval(ticks, 1000);
+    ticks();//先执行一次函数，消除刷新页面时初始全是0的影响。
+
+</script>
+</body>
+</html>

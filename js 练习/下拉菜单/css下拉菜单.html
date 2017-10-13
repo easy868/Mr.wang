@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>css下拉菜单</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!-- 时间 ：17/10/11-->
+    <style>
+        .nav>ul{ width:50%; margin:0 auto; background: #eee;}
+        .nav>ul>li{ float: left; position: relative;}
+        .nav a{ min-width:40px; height:40px; line-height:40px; padding:0 10px; display: block; text-align: center; white-space:nowrap;}
+        .nav>ul>li>a:hover{ background: #2aabd2; color: #fff;}
+        .nav>ul>li:hover .sub-nav{ display: block;}
+        .sub-nav{ position: absolute; top:100%; left:0; display: none;}
+        .sub-nav a{ background: #faebcc; border-bottom:1px solid #2aabd2;}
+        .sub-nav a:hover{ background: #f00; color: #fff;}
+        .sub-nav li:last-child a{ border-bottom:none;}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul class="clearfix">
+            <li>
+                <a href="#">服装</a>
+                <ul class="sub-nav">
+                    <li><a href="#">二级菜单超长菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">数码用品</a>
+                <ul class="sub-nav">
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">家电</a>
+                <ul class="sub-nav">
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">生活用品</a>
+                <ul class="sub-nav">
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

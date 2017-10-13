@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>test</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        #od { width: 100px; height: 100px; background: #f00; position: absolute; left: 500px; top: 50px; }
+        .od2 { width: 1px; height: 300px; background: #2aabd2; position: absolute; top: 0; left: 300px; }
+    </style>
+</head>
+<body>
+<button id="btn">开始</button>
+<div id="od"></div>
+<div class="od2"></div>
+<script>
+    var od = document.getElementById('od'),
+        btn = document.getElementById('btn');
+    btn.onclick = function () {
+        move()
+    };
+    function move() {
+        setInterval(function () {
+            var speed = (300 - od.offsetLeft) / 10;
+            if (speed > 0) {
+                speed = Math.ceil(speed)
+            } else {
+                speed = Math.floor(speed)
+            }
+            od.style.left = od.offsetLeft + speed + 'px';
+            document.title = od.offsetLeft + ',' + speed;
+        }, 30)
+    }
+</script>
+</body>
+</html>

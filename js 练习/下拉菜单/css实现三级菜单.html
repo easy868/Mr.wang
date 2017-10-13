@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>css三级菜单</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--时间 ：17/10/11 。主要问题是处理层级关系-->
+    <style>
+        .nav { display: table; table-layout: fixed; margin: 0 auto; background: #eee; text-align: center; white-space: nowrap; }
+        .nav > li { display: table-cell; }
+        .nav li { position: relative; }
+        .nav li:hover > .nav-menu { display: block; }
+        .nav li a { height: 40px; line-height: 40px; padding: 0 10px; display: block; }
+        .nav li a:hover { background: #e83e8c; color: #fff; }
+        .nav-menu { position: absolute; top: 100%; left: 0; border: 1px solid #2aabd2; min-width: 100%; display: none; }
+        .nav-menu .nav-menu { top: 0; left: 100%; }
+    </style>
+</head>
+<body>
+<ul class="nav clearfix">
+    <li><a href="#">服装 +</a>
+        <ul class="nav-menu">
+            <li><a href="#">女装</a></li>
+            <li><a href="#">童装</a></li>
+            <li><a href="#">男装 +</a>
+                <ul class="nav-menu">
+                    <li><a href="#">二级菜单</a></li>
+                    <li><a href="#">二级菜单 +</a>
+                        <ul class="nav-menu">
+                            <li><a href="#">T恤 三级</a></li>
+                            <li><a href="#">T恤 三级</a></li>
+                            <li><a href="#">T恤 三级</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">二级菜单</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">数码用品</a>
+        <ul class="nav-menu">
+            <li><a href="#">手机</a></li>
+            <li><a href="#">电脑</a></li>
+            <li><a href="#">单反</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">家电</a>
+        <ul class="nav-menu">
+            <li><a href="#">彩电</a></li>
+            <li><a href="#">冰箱</a></li>
+            <li><a href="#">洗衣机</a></li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

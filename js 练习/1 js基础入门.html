@@ -6,124 +6,23 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no,email=no" name="format-detection">
-    <title>1 js基础</title>
+    <title>js 六种数据类型</title>
     <link rel="stylesheet" href="css/reset.css">
-    <style>
-        /*      #tab > div { width: 110px; height: 100px; border: 1px solid #d01d47; display: none; }
-              .active { background: yellow; }*/
-    </style>
-
+    <style></style>
 </head>
 <body>
-<!--<input type="checkbox" name="" id="inp1">
-<div id="div1">为了您的信息安全...</div>
-<div id="div2">div2</div>
-<input type="text" name="" id="inp-txt" value="111">
-<input id="btn" type="button" value="显示/隐藏">
-<a href="javascript:;">a链接</a> &lt;!&ndash;a链接加在href里阻止跳转&ndash;&gt;
-<div id="div3"></div>
-<input type="button" id="btn1" value="变色" onclick="setStyle('background','green')">
-<input type="button" id="btn2" value="变宽" onclick="setStyle('width','300px')">
-<input type="button" id="btn3" value="变高" onclick="setStyle('height','300px')">-->
-<!--<input id="btn1" type="button" value="全选">
-<input id="btn2" type="button" value="不选">
-<input id="btn3" type="button" value="反选">
-<div id="box">
-    <input type="checkbox" name="" id="">
-    <input type="checkbox" name="" id="">
-    <input type="checkbox" name="" id="">
-    <input type="checkbox" name="" id="">
-    <input type="checkbox" name="" id="">
-    <input type="checkbox" name="" id="">
-</div>
-&lt;!&ndash;全选 不选 反选&ndash;&gt;-->
-<!--<div id="tab">
-    <input type="button" value="中国" class="active">
-    <input type="button" value="美国">
-    <input type="button" value="俄罗斯">
-    <div style="display: block;">111</div>
-    <div>222</div>
-    <div>333</div>
-</div>-->
-
 <script>
-    /*    window.onload = function () {
-     var btn = document.getElementById('btn1'),
-     btn2 = document.getElementById('btn2'),
-     btn3 = document.getElementById('btn3'),
-     box = document.getElementById('box'),
-     inp = box.getElementsByTagName('input');
-     btn.onclick = function () {
-     for (var i = 0; i < inp.length; i++) {
-     inp[i].checked = true
-     }
-     };//全选
-     btn2.onclick = function () {
-     for (var i = 0; i < inp.length; i++) {
-     inp[i].checked = false
-     }
-     };//全不选
-     btn3.onclick = function () {
-     for (var i = 0; i < inp.length; i++) {
-     if (inp[i].checked == true) {
-     inp[i].checked = false
-     } else {
-     inp[i].checked = true
-     }
-     }
-     };//反选
-     }
-     //    全选 不选 反选*/
-    /*   window.onload = function () {
-     var inp1 = document.getElementById('inp1'),
-     div1 = document.getElementById('div1');
-     inp1.onmouseover = function () {
-     div1.style.display = 'block'
-     };
-     inp1.onmouseout = function () {
-     div1.style.display = 'none'
-     };//鼠标移入显示，移出隐藏。
-     var div2 = document.getElementById('div2');
-     div2.onmouseover = function () {
-     div2.style.width = '100px';
-     div2.style.height = '100px';
-     div2.style.background = 'red';
-     };//鼠标移入改变样式。
-     var btn = document.getElementById('btn'),
-     inp = document.getElementById('inp-txt');
-     btn.onclick = function showHide() {
-     if (inp.style.display === 'block') {
-     inp.style.display = 'none'
-     } else {
-     inp.style.display = 'block'
-     }
-     }; //点击显示隐藏
-
-     };
-     function setStyle(name, value) {
-     var div3 = document.getElementById('div3');
-     div3.style[name] = value;
-     }
-     var i = 0;
-     while (i < 5) {
-     alert(i);
-     i++
-     }*/
-    /*    var tab = document.getElementById('tab'),
-     inp = tab.getElementsByTagName('input'),
-     adiv = tab.getElementsByTagName('div');
-     for (var i = 0; i < inp.length; i++) {
-     inp[i].index = i;
-     inp[i].onmouseover = function () {
-     for (var j = 0; j < inp.length; j++) {
-     inp[j].className = '';
-     adiv[j].style.display = 'none'
-     }
-     this.className = 'active';
-     adiv[this.index].style.display = 'block'
-     }
-     }*///    tab选项卡
-
+    //    'use strict';
+    /*
+        五种基本数据类型： number，Boolean，string，null，undefined；
+        一种对象类型：object；包括function，array，date等
+    */
+    var arr=[1,2,3];
+    var a2=[11,22,33];
+    console.log(
+        arr.concat(a2),
+        arr
+    )
 </script>
 </body>
 </html>

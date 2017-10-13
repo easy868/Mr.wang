@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <title>图片懒加载测试</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        #div1 { width: 520px; margin: 30px auto; border: 1px solid red; overflow: hidden; }
+        li { width: 160px; height: 160px; float: left; list-style: none; margin: 5px; border: 1px dashed #2aabd2; }
+        img { max-width: 100%; }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140710/1-140G0161612.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33242.jpg" src="img/0.png" alt=""></li>
+        <li><img data-src="http://img.bizhi.sogou.com/images/2014/12/10/997251.jpg" src="img/0.png" alt=""></li>
+    </ul>
+</div>
+<script>
+    function scrollFn() {
+        var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
+        var viewH = window.innerHeight || document.documentElement.clientHeight;
+        var oUl = document.getElementsByTagName('ul')[0];
+        var oImg = oUl.getElementsByTagName('img');
+        for (var i = 0; i < oImg.length; i++) {
+            if (oImg[i].offsetTop < scrollT + viewH) {
+                if(oImg[i].dataset){
+                    oImg[i].src = oImg[i].dataset.src;
+                }else{
+                    oImg[i].src = oImg[i].getAttribute('data-src');
+                }
+            }
+        }
+    }
+    scrollFn();
+    window.onscroll = function () {
+        scrollFn()
+    }
+</script>
+</body>
+</html>

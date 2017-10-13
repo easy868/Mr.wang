@@ -11,12 +11,12 @@
     <script src="../js/jquery-3.2.1.js"></script>
     <!-- 时间 ：17/10/12-->
     <style>
-        .nav { margin-top: 30px; position: relative; text-align: center; padding:0 15px;box-sizing:border-box;}
+        .nav { margin-top: 30px; position: relative; text-align: center; padding: 0 15px; box-sizing: border-box; }
         .nav-hd { width: 50%; margin: 0 auto; background: #333; }
         .nav-hd a { display: inline-block; text-align: center; width: 25%; height: 40px; line-height: 40px; color: #fff; }
         .nav-hd a:hover { background: #e83e8c; text-decoration: underline; }
         .nav-hd a.active { background: #e83e8c; }
-        .nav-body { display: none; width: 50%; overflow: hidden; margin: 0 auto; border: 1px solid #e83e8c; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); }
+        .nav-body { display: none; width: calc(50% - 15px); overflow: hidden; border: 1px solid #e83e8c; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); }
         .nav-body .nav-content { height: 140px; line-height: 140px; font-size: 40px; width: 400%; color: #5cb85c; }
         .nav-body .nav-content > div { width: 25%; height: 100%; float: left; }
         .nav-body .close { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #f00; cursor: pointer; }
@@ -28,7 +28,6 @@
                 var idx = $this.index();
                 if ($this.hasClass('active')) {
                     $('.close').click();
-                    return false;
                 } else {
                     $this.addClass('active').siblings().removeClass('active');
                     $('.nav-body').stop().slideDown();
@@ -36,7 +35,7 @@
                 }
             });
             $('.close').on('click', function () {
-                $('.nav-body').slideUp();
+                $('.nav-body').stop().slideUp();
                 $('.nav-hd>a').removeClass('active');
                 console.log('点击了关闭按钮')
             });

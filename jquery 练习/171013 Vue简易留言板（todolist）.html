@@ -13,10 +13,7 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
-
-    <style>
-
-    </style>
+    <style></style>
 </head>
 <body style="background: #f1f1f1;">
 <div class="container" id="box">
@@ -26,7 +23,7 @@
             <input type="text" class="form-control" id="username" placeholder="请输入用户名" v-model="username" autofocus>
         </div>
         <div class="form-group">
-            <label for="age">用户名</label>
+            <label for="age">年龄</label>
             <input type="text" class="form-control" id="age" placeholder="请输入年龄" v-model="age">
         </div>
         <div class="form-group">
@@ -37,12 +34,14 @@
     <!--表单输入框-->
     <table class="table table-bordered table-hover text-center">
         <caption>用户信息表</caption>
+        <thead>
         <tr>
             <th>序号</th>
             <th>名字</th>
             <th>年龄</th>
             <th>操作</th>
         </tr>
+        </thead>
         <tbody>
         <tr v-for="(v,idx) in myData">
             <td>{{idx+1}}</td>
@@ -100,7 +99,7 @@
                     this.age = '';
                 },
                 deleteMsg: function (n) {
-                    if (n == -100) {
+                    if (n === -100) {
                         this.myData = [];
                     } else {
                         this.myData.splice(n, 1)

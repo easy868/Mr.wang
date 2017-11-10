@@ -7,10 +7,9 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no,email=no" name="format-detection">
     <title>jq 倒计时插件</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" href="../js%20练习/css/reset.css">
     <style>
-        .count-down { text-align: center; margin-bottom: 15px;  background: #333; color: #fff; line-height: 60px; font-size: 24px; }
+        .count-down { text-align: center; margin-bottom: 15px; background: #333; color: #fff; line-height: 60px; font-size: 24px; }
     </style>
 </head>
 <body>
@@ -23,7 +22,7 @@
     <span class="day">0</span> 天 <span class="hour">0</span> 时 <span class="minute">0</span> 分 <span class="sec">0</span> 秒
 </div>
 
-<script src="js/jquery-3.2.1.js"></script>
+<script src="../js%20练习/js/jquery-3.2.1.js"></script>
 <script>
     /*
     * @author: jingwei.wang
@@ -48,8 +47,8 @@
 
                     function times() {
                         var nowDate = new Date(),
-                            endDate = $this.data('end') ? new Date($this.data('end')) : new Date(opts.endTime),
-                            tms = endDate - nowDate,
+                            endDate = $this.data('end') ? new Date($this.data('end')) : new Date(opts.endTime),// 定义了两种方式，data-end和defaults.endTime,优先data-end
+                            tms = endDate - nowDate,    //时间差
                             days = Math.floor(tms / 1000 / 60 / 60 / 24),
                             hours = Math.floor(tms / 1000 / 60 / 60 % 24),
                             minutes = Math.floor(tms / 1000 / 60 % 60),

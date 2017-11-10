@@ -13,6 +13,9 @@
         .tab-nav li { float: left; width: 100px; height: 40px; line-height: 40px; background: #333; color: #fff; text-align: center; }
         .tab-nav li.active { background: #c6e2ff; color: #00f; transition: all .3s linear; }
         .tab-content > div { height: 200px; padding: 10px; border: 1px solid #2aabd2; display: none; }
+        .box .txt { transition: all 1s linear; }
+        .box:hover .text { opacity: 1; transition: all 1s linear; }
+
     </style>
 </head>
 <body>
@@ -34,22 +37,22 @@
         $.fn.tab = function (options) {
             var defaults = {
                 tabCont: '.tab-content>div',    //选项卡内容
-                event: 'mouseover',     //事件
+                event: 'click',     //事件
                 acClass: 'active'   //选中样式
             };
             var opt = $.extend({}, defaults, options);
-            return this.each(function () {
+            this.each(function () {
                 var $this = $(this);
                 $this.on(opt.event, function () {
                     $(this).addClass(opt.acClass).siblings().removeClass(opt.acClass);
                     $(opt.tabCont).eq($(this).index()).show().siblings().hide();
                 });
             });
+            return this;
         };
     })(jQuery);
-    $(function () {
-        $('.tab-nav>li').tab();
-    });
+
+    $('.tab-nav>li').tab({});  //插件调用
 </script>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>demo</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <!--<script src="js/bootstrap.js"></script>-->
+    <style></style>
+
+</head>
+<body>
+<div id="box">
+    <p v-bind:title="title$">姓名：{{name}}，年龄：{{age}}</p>
+    <!--属性绑定-->
+    <p v-if="seen">显示隐藏</p>
+    <!--控制显示/隐藏，seen是布尔值-->
+    <p class="cyclc" v-for="todo in todos">{{todo.text}}</p>
+    <!--循环，todos是数组，todo是数组的每一项-->
+    <p>{{msg}}</p>
+    <button v-on:click="reverseMsg">反转消息</button>
+    <!--事件，绑定的是个函数，定义在methods方法里-->
+    <p>{{btnMsg}}</p>
+    <input type="text" v-model="btnMsg">
+    <!--v-model是用于表单的双向绑定-->
+    <todo-item v-for="item in items" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    <!--自定义组件,上面几个命令不可缺少。-->
+    <p v-html="html$"></p>
+    <!--绑定HTML-->
+    <p v-bind:class="a1">a1</p>
+</div>
+<script>
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<p>{{todo.id}} ：{{todo.text}}</p>'
+    });
+
+    var demo = new Vue({
+        el: '#box',
+        data: {
+            name: '公子靖',
+            age: 18,
+            a1:'a1',
+            title$: '绑定属性',
+            html$: '<span style="color: #f00;font-weight: 700;">span标签</span>',
+            seen: true,
+            msg: '这里是消息',
+            todos: [
+                {text: '学习 JavaScript'},
+                {text: '学习 Vue'},
+                {text: '整个牛项目'}
+            ],
+            btnMsg: '输入框双向绑定',
+            items: [
+                {id: 0, text: '蔬菜'},
+                {id: 1, text: '奶酪'},
+                {id: 2, text: '随便其他什么人吃的东西'}
+            ]
+        },
+        methods: {
+            reverseMsg: function () {
+                this.msg = this.msg.split('').reverse().join('')
+            }
+        },
+        computed:{
+
+        }
+    });
+</script>
+</body>
+</html>

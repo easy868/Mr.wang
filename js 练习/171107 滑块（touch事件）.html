@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>js 滑块</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .slider { position: relative; margin: 30px 10px; height: 1px; background: green; }
+        .slider .slider-bar { width: 30px; height: 30px; line-height: 30px; color: #f00; text-align: center; border-radius: 50%; position: absolute; top: -15px; left: 0; background: #fdde70; }
+        .p1 { margin-top: 30px; }
+    </style>
+</head>
+<body>
+<div class="slider">
+    <span class="slider-bar">0</span>
+</div>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    (function () {
+        $('.slider-bar').on('touchstart', drag);
+
+        function drag(e) {
+            var $this = $(this),
+                disX = e.touches[0].clientX - $this.offset().left,      //点击时的坐标-物体相对与窗口的偏移
+                maxL = $('.slider').outerWidth() - $this.width();       //移动的最远距离
+            $this.on('touchmove', function (e) {
+                var moveX = e.touches[0].clientX,     //触摸移动时的坐标
+                    l = moveX - disX,       //移动时的坐标-触摸点与物体位置的差值，即为物体应该位移到的位置left
+                    progress = parseInt($this.position().left / maxL * 100);     //进度显示
+                if (l >= maxL) {    //判断是否超过边界
+                    l = maxL;
+                } else if (l <= 0) {
+                    l = 0;
+                }
+                $this.css({"left": l}).text(progress);      //设置物体位置和显示进度
+            });
+        };
+    })();   //触摸滑动js
+</script>
+</body>
+</html>

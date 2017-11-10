@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>测试页面</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .count-down { text-align: center; margin-top: 100px; background: #333; color: #fff; line-height: 60px; font-size: 24px; }
+    </style>
+</head>
+<body>
+<div class="count-down">
+    <span class="day">0</span> 天 <span class="hours">0</span> 时 <span class="minute">0</span> 分 <span class="sec">0</span> 秒
+</div>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    (function () {
+        countDown();
+        var timer = setInterval(countDown, 1000);
+
+        function countDown() {
+            var nowDate = new Date(),
+                endDate = new Date('2017 / 11 / 10'),
+                tms = endDate - nowDate,
+                days = Math.floor(tms / 1000 / 60 / 60 / 24),
+                hours = Math.floor(tms / 1000 / 60 / 60 % 24),
+                minute = Math.floor(tms / 1000 / 60 % 60),
+                sec = Math.floor(tms / 1000 % 60);
+
+            $('.day').text(days);
+            $('.hours').text(hours);
+            $('.minute').text(minute);
+            $('.sec').text(sec);
+        }
+    })();
+    (function () {
+
+    })();
+</script>
+</body>
+</html>

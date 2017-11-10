@@ -8,4 +8,4 @@ img { vertical-align: middle; }
 .clearfix:after { content: ''; display: block; height: 0; visibility: hidden; clear: both; }
 /*重置样式 css reset*/
 .fl { float: left; }
-.fr { float: right; }
+.fr { float: right;}

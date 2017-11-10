@@ -4507,7 +4507,7 @@
                  */
                 DEFINE_MANY: null,
                 /**
-                 * These methods are overriding the base class.
+                 * These methods are overriding the base.scss class.
                  */
                 OVERRIDE_BASE: null,
                 /**
@@ -4835,7 +4835,7 @@
             function validateMethodOverride(isAlreadyDefined, name) {
                 var specPolicy = ReactClassInterface.hasOwnProperty(name) ? ReactClassInterface[name] : null;
 
-                // Disallow overriding of base class methods unless explicitly allowed.
+                // Disallow overriding of base.scss class methods unless explicitly allowed.
                 if (ReactClassMixin.hasOwnProperty(name)) {
                     !(specPolicy === SpecPolicy.OVERRIDE_BASE) ? "development" !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to override ' + '`%s` from your class specification. Ensure that your method names ' + 'do not overlap with React methods.', name) : invariant(false) : void 0;
                 }
@@ -5056,7 +5056,7 @@
             }
 
             /**
-             * Add more to the ReactClass base class. These are all legacy features and
+             * Add more to the ReactClass base.scss class. These are all legacy features and
              * therefore not already part of the modern ReactComponent.
              */
             var ReactClassMixin = {
@@ -5287,7 +5287,7 @@
             /**
              * Deprecated APIs. These APIs used to exist on classic React classes but since
              * we would like to deprecate them, we're not going to move them over to this
-             * modern base class. Instead, we define a getter that warns if it's accessed.
+             * modern base.scss class. Instead, we define a getter that warns if it's accessed.
              */
             if ("development" !== 'production') {
                 var deprecatedAPIs = {
@@ -14242,7 +14242,7 @@
                 xlinkShow: 'xlink:show',
                 xlinkTitle: 'xlink:title',
                 xlinkType: 'xlink:type',
-                xmlBase: 'xml:base',
+                xmlBase: 'xml:base.scss',
                 xmlLang: 'xml:lang',
                 xmlSpace: 'xml:space',
                 y: 0,

@@ -10251,7 +10251,7 @@
 
                 var base64 = _dereq_('./base64');
 
-                // A single base 64 digit can contain 6 bits of data. For the base 64 variable
+                // A single base.scss 64 digit can contain 6 bits of data. For the base.scss 64 variable
                 // length quantities we use in the source map spec, the first bit is the sign,
                 // the next four bits are the actual value, and the 6th bit is the
                 // continuation bit. The continuation bit tells us whether there are more
@@ -10301,7 +10301,7 @@
                 }
 
                 /**
-                 * Returns the base 64 VLQ encoded value.
+                 * Returns the base.scss 64 VLQ encoded value.
                  */
                 exports.encode = function base64VLQ_encode(aValue) {
                     var encoded = "";
@@ -10324,7 +10324,7 @@
                 };
 
                 /**
-                 * Decodes the next base 64 VLQ value from the given string and returns the
+                 * Decodes the next base.scss 64 VLQ value from the given string and returns the
                  * value and the rest of the string.
                  */
                 exports.decode = function base64VLQ_decode(aStr) {
@@ -10336,7 +10336,7 @@
 
                     do {
                         if (i >= strLen) {
-                            throw new Error("Expected more digits in base 64 VLQ value.");
+                            throw new Error("Expected more digits in base.scss 64 VLQ value.");
                         }
                         digit = base64.decode(aStr.charAt(i++));
                         continuation = !!(digit & VLQ_CONTINUATION_BIT);
@@ -10376,7 +10376,7 @@
                     });
 
                 /**
-                 * Encode an integer in the range of 0 to 63 to a single base 64 digit.
+                 * Encode an integer in the range of 0 to 63 to a single base.scss 64 digit.
                  */
                 exports.encode = function base64_encode(aNumber) {
                     if (aNumber in intToCharMap) {
@@ -10386,13 +10386,13 @@
                 };
 
                 /**
-                 * Decode a single base 64 digit to an integer.
+                 * Decode a single base.scss 64 digit to an integer.
                  */
                 exports.decode = function base64_decode(aChar) {
                     if (aChar in charToIntMap) {
                         return charToIntMap[aChar];
                     }
-                    throw new TypeError("Not a valid base 64 digit: " + aChar);
+                    throw new TypeError("Not a valid base.scss 64 digit: " + aChar);
                 };
 
             });
@@ -11221,7 +11221,7 @@
                     };
 
                 /**
-                 * Serialize the accumulated mappings in to the stream of base 64 VLQs
+                 * Serialize the accumulated mappings in to the stream of base.scss 64 VLQs
                  * specified by the source map format.
                  */
                 SourceMapGenerator.prototype._serializeMappings =
@@ -12000,7 +12000,7 @@
 
                         //Adjust any relative paths.
                         if (name && name.charAt(0) === '.') {
-                            //If have a base name, try to normalize against it,
+                            //If have a base.scss name, try to normalize against it,
                             //otherwise, assume it is a top-level require that will
                             //be relative to baseUrl in the end.
                             if (baseName) {

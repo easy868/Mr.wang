@@ -17,17 +17,16 @@
 <div id="box">123</div>
 <!--<script src="js/jquery-3.1.1.min.js"></script>-->
 <script>
-    window.onload = function () {
-        var oBtn = document.getElementById('btn1'),
-            oBox = document.getElementById('box');
-        oBtn.onclick = function showHide(obj, value) {
-            if (oBox.style.display === 'block') {
-                oBox.style.display = 'none'
-            } else {
-                oBox.style.display = 'block'
-            }
-        };
-    }
+    var oBtn = document.getElementById('btn1'),
+        oBox = document.getElementById('box');
+    oBtn.onclick = function showHide(obj, value) {
+        if (oBox.style.display === 'block') {
+            oBox.style.display = 'none'
+        } else {
+            oBox.style.display = 'block'
+        }
+    };
+
 </script>
 </body>
 </html>

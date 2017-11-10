@@ -5471,7 +5471,7 @@
                  */
                 DEFINE_MANY: null,
                 /**
-                 * These methods are overriding the base class.
+                 * These methods are overriding the base.scss class.
                  */
                 OVERRIDE_BASE: null,
                 /**
@@ -5835,7 +5835,7 @@
                     ReactClassInterface[name] :
                     null;
 
-                // Disallow overriding of base class methods unless explicitly allowed.
+                // Disallow overriding of base.scss class methods unless explicitly allowed.
                 if (ReactClassMixin.hasOwnProperty(name)) {
                     ("production" !== "development" ? invariant(
                         specPolicy === SpecPolicy.OVERRIDE_BASE,
@@ -6153,7 +6153,7 @@
             };
 
             /**
-             * Add more to the ReactClass base class. These are all legacy features and
+             * Add more to the ReactClass base.scss class. These are all legacy features and
              * therefore not already part of the modern ReactComponent.
              */
             var ReactClassMixin = {
@@ -6469,7 +6469,7 @@
             /**
              * Deprecated APIs. These APIs used to exist on classic React classes but since
              * we would like to deprecate them, we're not going to move them over to this
-             * modern base class. Instead, we define a getter that warns if it's accessed.
+             * modern base.scss class. Instead, we define a getter that warns if it's accessed.
              */
             if ("production" !== "development") {
                 var deprecatedAPIs = {
@@ -10720,7 +10720,7 @@
              * Shared warning and monitoring code for the key warnings.
              *
              * @internal
-             * @param {string} message The base warning that gets output.
+             * @param {string} message The base.scss warning that gets output.
              * @param {ReactElement} element Component that requires a key.
              * @param {*} parentType element's parent's type.
              */

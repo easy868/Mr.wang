@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>多物体运动 变宽</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .od { width: 150px; height: 50px; margin: 10px; background: #00b3ee; }
+    </style>
+</head>
+<body>
+<div class="od"></div>
+<div class="od"></div>
+<div class="od"></div>
+<script>
+    var btn = document.getElementById('btn');
+    var aod = document.getElementsByClassName('od');
+    for (var i = 0; i < aod.length; i++) {
+        aod[i].timer = null;//每个div开一个定时器，互不干扰
+        aod[i].onmouseover = function () {
+            move(this, 300)
+        };
+        aod[i].onmouseout = function () {
+            move(this, 100)
+        };
+    }
+
+    function move(obj, iTarget) {
+        clearInterval(obj.timer);
+        var od = document.getElementById('od');
+        var speed = 5;
+        obj.timer = setInterval(function () {
+            var speed = (iTarget - obj.offsetWidth) / 6;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if (obj.style.width === iTarget) {
+                clearInterval(obj.timer);
+            } else {
+                obj.style.width = obj.offsetWidth + speed + 'px';
+            }
+        }, 30)
+    }
+</script>
+</body>
+</html>

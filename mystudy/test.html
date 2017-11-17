@@ -1,13 +1,136 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>mystudy/test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝滚动轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box {
+            width: 16rem;
+            height: 7.5rem;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        #box ul {
+            width: 96rem;
+            height: 7.5rem;
+            transform: translateX(-16rem);
+        }
+        #box ul li {
+            width: 16rem;
+            height: 7.5rem;
+            float: left;
+            font-size: 2rem;
+            color: #fff;
+            line-height: 7.5rem;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        //这是用js 监听屏幕的大小来改变根元素的font-size
+        (function (win, doc) {
+            function change() {
+                doc.documentElement.style.fontSize = doc.documentElement.clientWidth * 20 / 320 + 'px';
+            }
+
+            change();
+            win.addEventListener('resize', change, false);
+        })(window, document);
+    </script>
+
 </head>
 <body>
-<div class="box">这是一段文字</div>
-<script src="js/jquery-3.2.1.js"></script>
+<div id="box">
+    <ul>
+        <li style="background:green">4</li>
+        <li style="background: red;">1</li>
+        <li style="background: orange;">2</li>
+        <li style="background: blue;">3</li>
+        <li style="background:green">4</li>
+        <li style="background: red;">1</li>
+    </ul>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var oBox = document.getElementById('box');
+        var oUl = document.querySelector('#box ul');
+        var aLi = oUl.children;
+        var iNow = 1;
+        var x = -iNow * aLi[0].offsetWidth;     //jw` x为负数
+        //在这里设置一个开关,是css运动结束后解锁
+        var bReady = true;
+        oUl.addEventListener('touchstart', function (ev) {
+            if (bReady == false) {
+                return;
+            }
+            bReady = false;
+            oUl.style.transition = 'none';
+            var disX = ev.targetTouches[0].pageX - x;   //jw` disX为正数，点击开始位置-x
+            var downX = ev.targetTouches[0].pageX;      //jw` 点击时的x
+            console.log(disX)
+
+            function fnMove(ev) {               //ev.targetTouches[0].pageX - x
+                x = ev.targetTouches[0].pageX - disX;   //jw` 移动时，x=移动时的坐标-disX
+                oUl.style.transform = 'translate3d(' + x + 'px,0,0)';
+                console.log(disX)
+            }
+
+            function fnEnd(ev) {
+                var upX = ev.changedTouches[0].pageX;
+                //判断是否移动距离大于50
+                if (Math.abs(upX - downX) > 50) {
+                    //左边移动
+                    if (upX - downX < 0) {
+                        iNow++;
+                        if (iNow == aLi.length) {
+                            iNow = aLi.length - 1;
+                        }
+                    } else {
+                        //右边移动
+                        iNow--;
+                        if (iNow == -1) {
+                            iNow = 0;
+                        }
+                    }
+                }
+                //储存此时ul的位置
+                x = -iNow * aLi[0].offsetWidth;
+                oUl.style.transform = 'translate3d(' + x + 'px,0,0)';
+                oUl.style.transition = '200ms all ease';
+
+                //监听li 当移动到两端的li时  瞬间移回
+                function tEnd() {
+                    if (iNow === 5) {
+                        iNow = 1;
+                    }
+                    if (iNow === 0) {
+                        iNow = 4;
+                    }
+                    oUl.style.transition = 'none';
+                    x = -iNow * aLi[0].offsetWidth;
+                    oUl.style.transform = 'translate3d(' + x + 'px,0,0)';
+                    bReady = true;
+                }
+
+                oUl.addEventListener('transitionend', tEnd, false);
+                //释放内存
+                document.removeEventListener('touchend', fnEnd, false);
+                document.removeEventListener('touchmove', fnMove, false);
+            }
+
+            document.addEventListener('touchmove', fnMove, false);
+            document.addEventListener('touchend', fnEnd, false);
+            //阻止默认事件
+            ev.preventDefault();
+        }, false);
+    }, false);
+</script>
 </body>
 </html>

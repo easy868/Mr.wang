@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>面向对象 tab插件</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .tabs { width: 400px; margin: 70px auto; font-size: 16px; }
+        .tabs-head li { float: left; width: 100px; height: 40px; line-height: 40px; text-align: center; background: #333; color: #fff; cursor: pointer; }
+        .tabs-head .active { background: #f00; }
+        .tabs-body .tabs-item { display: none; width: 300px; height: 200px; background: #2aabd2; font-size: 24px; padding: 10px; }
+        .tabs-body .active { display: block; }
+    </style>
+</head>
+<body>
+<section class="tabs">
+    <ul class="tabs-head clearfix" data-config="{
+        triggerType: 'click',
+        effect: 'fade',
+        invoke: 2,
+        auto: 1000
+    }">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div class="tabs-body">
+        <div class="tabs-item active">111111111</div>
+        <div class="tabs-item">22222222222</div>
+        <div class="tabs-item">3333333333333</div>
+    </div>
+</section>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    (function ($) {
+        var tab = function (tab) {
+            var that = this;
+            this.tab = tab;
+            this.config = {   //这里定义了默认参数
+                triggerType: 'mouseover',   //定义触发类型
+                effect: 'default',     //定义切换效果
+                invoke: 1,      //默认展示第一个
+                auto: false      //定义是否自动切换
+            }
+        };
+        tab.prototype = {
+            getConfig: function () {
+                var config = this.tab.attr('data-config')
+            }
+        };
+        window.tab = tab;
+
+    })(jQuery);
+    var tab2 = new tab($('.tabs-head').eq(0));
+</script>
+</body>
+</html>

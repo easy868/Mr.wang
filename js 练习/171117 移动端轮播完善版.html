@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>移动端触摸轮播</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .box { overflow: hidden; position: relative; }
+        .list { display: flex; flex-wrap: nowrap; height: 200px; font-size: 100px; transform: translate3d(-375px, 0, 0); position: relative; }
+        .list li { flex: 0 0 100%; height: 200px; line-height: 200px; text-align: center; background: #fe7e8d; }
+        .list .a2 { background: #e94b35; }
+        .list .a3 { background: #269abc; }
+        .list li { color: #fff; word-break: break-all; }
+        /*.list li.ac { font-size: 180px; background: #333; font-weight: 700; }*/
+        .op p { text-align: center; padding: 10px; border-bottom: 1px solid #e0e0e0; font-size: 24px; }
+        .focus-btn { position: absolute; bottom: 10px; left: 0; width: 100%; text-align: center; }
+        .focus-btn .btn { width: 14px; height: 14px; border-radius: 50%; background: #007aff; color: #fff; margin-right: 10px; display: inline-block; vertical-align: middle; }
+        .focus-btn .btn:last-child { margin-right: 0; }
+        .focus-btn .active { background: #fff; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="list">
+        <li class="a1">1</li>
+        <li class="a2">22</li>
+        <li class="a3">333</li>
+    </ul>
+    <div class="focus-btn"></div>
+</div>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    /*
+    * @author：jingwei.wang
+    * @time:2017/11/17 15:09
+    * @lastChangeTime:2017/11/17 15:09
+    * 功能：
+    * 1.自动轮播、无缝切换、触摸滑动
+    * 实现思路：
+    * 1.首先首尾各复制dom添加到尾首，比如三张图123，最终渲染结构应该是31231
+    * 2.无缝切换关键点在于到达首尾两张图时，瞬间切换到相同的图片上，中间没有过度，视觉欺骗效果，这个过程由transitionend来完成
+    * */
+    (function ($) {
+        var aul = $('.list');
+        var ali = $('.list li');
+        aul.append(ali.first().clone(true).addClass('ac')).prepend(ali.last().clone(true).addClass('ac'));  //这里给复制的首尾加上类名是为了方便展示瞬间切换的障眼法
+        var len = aul.children().length,    //子元素的长度
+            oneW = ali.outerWidth(),    //一个子元素的宽度
+            startX = 0, //触摸时x坐标
+            moveX = 0,  //移动时x坐标
+            disX = 0,   //坐标差
+            upX = 0,    //手抬起时x
+            num = 1,    //初始num
+            timer = null;   //定时器
+        setTranslate(-num * oneW);  //设置初始translate3d()位置
+        for (var i = 0; i < ali.length; i++) {  //动态生成圆点指示器
+            $('.focus-btn').append('<span class="btn"></span>')
+        }
+        $('.focus-btn .btn').eq(0).addClass('active');  //默认选中第一个圆点
+        aul.on({    //绑定事件
+            'touchstart': fnStart,
+            'touchmove': fnMove,
+            'touchend': fnEnd,
+            'transitionend': tEnd
+        });
+        timer = setInterval(function () {   //定时器，自动轮播
+            num++;
+            addTrans(); //添加过渡效果
+            setTranslate(-num * oneW);  //改变位置
+        }, 5000);
+
+        function tEnd() {  //过渡结束后触发此函数，瞬间切换相同的图片
+            if (num >= len - 1) {   //判断，控制num
+                num = 1;
+            } else if (num <= 0) {
+                num = len - 2;
+            }
+            removeTrans();  //无缝切换关键在切换的时候移除过渡效果
+            setTranslate(-num * oneW);
+            setPoint(); //设置圆点选中
+        }
+
+        function fnStart(e) {   //touchstart开始函数
+            startX = e.targetTouches[0].pageX;  //点击时 坐标
+            clearInterval(timer);   //点击时清除定时器
+        }
+
+        function fnMove(e) {    //touchmove函数
+            e.preventDefault(); //阻止默认事件
+            moveX = e.targetTouches[0].pageX;   //移动时的坐标
+            disX = moveX - startX;      //移动时坐标-点击时坐标=坐标差（即ul应该加上的位移）
+            setTranslate(-num * oneW + disX);
+            removeTrans();  //移除过渡效果，手指在轮播上移动时不需要过渡效果，不然会有延迟
+        }
+
+        function fnEnd(e) {    //松手时的函数
+            upX = e.changedTouches[0].pageX - startX;  //松手时坐标-点击时坐标()
+            if (Math.abs(upX) > 60) {     //松手时ul移动的触发条件
+                if (upX > 0) {    //向右滑动
+                    num--;
+                } else {    //向左滑动
+                    num++;
+                }
+            }
+            addTrans();
+            setTranslate(-num * oneW);
+            timer = setInterval(function () {   //触摸结束后重新打开定时器
+                num++;
+                addTrans();
+                setTranslate(-num * oneW);
+            }, 1000)
+        }
+
+        function addTrans() {   //添加过渡效果
+            aul.css({'transition-duration': '.3s'});
+        }
+
+        function removeTrans() {    //移除过渡效果
+            aul.css({'transition-duration': '0s'});
+        }
+
+        function setTranslate(x) {  //设置ul的位置
+            aul.css({'transform': 'translate3d(' + x + 'px,0,0)'});
+        }
+
+        function setPoint() {   //设置小圆点选中
+            $('.focus-btn .btn').eq(num - 1).addClass('active').siblings().removeClass('active');
+        }
+
+
+    })(jQuery);
+</script>
+</body>
+</html>

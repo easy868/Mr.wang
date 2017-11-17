@@ -19,6 +19,7 @@
 <div class="slider">
     <span class="slider-bar">0</span>
 </div>
+
 <script src="js/jquery-3.2.1.js"></script>
 <script>
     (function () {
@@ -26,12 +27,12 @@
 
         function drag(e) {
             var $this = $(this),
-                disX = e.touches[0].clientX - $this.offset().left,      //点击时的坐标-物体相对与窗口的偏移
-                maxL = $('.slider').outerWidth() - $this.width();       //移动的最远距离
+                disX = e.touches[0].clientX - $this.offset().left,   //点击时的坐标-物体相对与窗口的偏移
+                maxL = $('.slider').outerWidth() - $this.width();   //移动的最远距离
             $this.on('touchmove', function (e) {
                 var moveX = e.touches[0].clientX,     //触摸移动时的坐标
                     l = moveX - disX,       //移动时的坐标-触摸点与物体位置的差值，即为物体应该位移到的位置left
-                    progress = parseInt($this.position().left / maxL * 100);     //进度显示
+                    progress = parseInt($this.position().left / maxL * 100);   //进度显示
                 if (l >= maxL) {    //判断是否超过边界
                     l = maxL;
                 } else if (l <= 0) {

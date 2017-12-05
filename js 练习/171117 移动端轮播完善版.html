@@ -15,7 +15,6 @@
         .list .a2 { background: #e94b35; }
         .list .a3 { background: #269abc; }
         .list li { color: #fff; word-break: break-all; }
-        /*.list li.ac { font-size: 180px; background: #333; font-weight: 700; }*/
         .op p { text-align: center; padding: 10px; border-bottom: 1px solid #e0e0e0; font-size: 24px; }
         .focus-btn { position: absolute; bottom: 10px; left: 0; width: 100%; text-align: center; }
         .focus-btn .btn { width: 14px; height: 14px; border-radius: 50%; background: #007aff; color: #fff; margin-right: 10px; display: inline-block; vertical-align: middle; }
@@ -71,7 +70,7 @@
             num++;
             addTrans(); //添加过渡效果
             setTranslate(-num * oneW);  //改变位置
-        }, 5000);
+        }, 2000);
 
         function tEnd() {  //过渡结束后触发此函数，瞬间切换相同的图片
             if (num >= len - 1) {   //判断，控制num
@@ -130,7 +129,6 @@
         function setPoint() {   //设置小圆点选中
             $('.focus-btn .btn').eq(num - 1).addClass('active').siblings().removeClass('active');
         }
-
 
     })(jQuery);
 </script>

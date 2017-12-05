@@ -1,2 +1,88 @@
-$gray-color: #666;
-a { color: $gray-color;transform:translate(-50%) }
+@import 'bootstrap.css';
+@import 'reset.css';
+$bg-color: #fff;
+$left: left;
+$one: 100px;
+
+a {
+  border-#{$left}: 1px solid #333;
+  height: $one*10;
+  width: (100%/6);
+  top: $one+30px;
+}
+div {
+  h1 {
+    height: $one;
+  }
+  > h1 {
+    background: $bg-color;
+    border: {
+      color: #666;
+      width: 1px;
+    }
+    &:hover {
+      font-size: $one;
+    }
+    &:after {
+      content: '1';
+    }
+  }
+}
+.class1 {
+  width: 100px;
+}
+.class2 {
+  @extend .class1;
+}
+.class3 {
+  @extend .class2;
+}
+@mixin left($tow:100px) {
+  height: $tow;
+}
+@mixin go-shop {
+  height: 100px;
+}
+.h6 {
+  @include go-shop;
+}
+.h2 {
+  @include left(200px);
+}
+p {
+  @if 1+1==3 {
+    color: #000;
+  } @else if 2>10 {
+    color: #333;
+  } @else {
+    color: #fff;
+  }
+}
+@function double($n) {
+  @return $n*2;
+}
+h3 {
+  width: double(10px);
+}
+@for $i from 1 to 3 {
+}
+@each $i in a b c {
+  .#{$i} {
+    background-image: url("#{$i}.png")
+  }
+}
+a {
+  &:hover {
+    color: #999;
+  }
+  &:visited {
+    color: #333;
+  }
+  &:after {
+    content: '1';
+    height: 100px;
+    color: #333;
+    background: #fff;
+    box-shadow: 2px 2px 2px #ff0;
+  }
+}

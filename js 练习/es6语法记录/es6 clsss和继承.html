@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>class和继承</title>
+</head>
+<body>
+<script>
+    'use strict'; //使用严格模式
+    class Gou { //class构造一个函数
+        constructor(name = '默认name', age = '默认age') {   //构造器,传参并设置默认参数
+            this.name = name;
+            this.age = age;
+        };
+
+        show() {    //方法
+            return this.name;
+        };
+    }
+
+    class Gouer extends Gou {   //Gouer继承Gou
+        constructor(name, age, leg) {   //leg为子类的参数
+            super(name, age);   //继承父类
+            this.leg = leg;    //设置子类自己的参数
+        }
+
+        show2() {   //子类自己的方法
+            return this.leg;
+        }
+    }
+
+    let xiaogou = new Gouer('小狗继承的', 10, 4); // 实例化一个对象
+    console.log(xiaogou.show2());
+
+</script>
+</body>
+</html>

@@ -23,22 +23,25 @@
 </div>
 <script>
     (function () {
-        var oClock = document.getElementsByClassName('clock')[0],
+        let oClock = document.getElementsByClassName('clock')[0],
             aImg = oClock.getElementsByTagName('img');
+        let clock = setInterval(ticks, 1000);
+
         function ticks() {
-            var oDate = new Date(),
+            let oDate = new Date(),
                 h = oDate.getHours(),
                 m = oDate.getMinutes(),
                 s = oDate.getSeconds();
-            var str = '' + toDouble(h) + toDouble(m) + toDouble(s);//把时间存储为字符串。
-            for (var i = 0; i < aImg.length; i++) {
+            let str = '' + toDouble(h) + toDouble(m) + toDouble(s);//把时间存储为字符串。
+            for (let i = 0; i < aImg.length; i++) {
                 aImg[i].src = 'img/' + str[i] + '.png';
             }
+
             function toDouble(n) {
                 return n < 10 ? n = '0' + n : n;
             } //转化为两位数字。
         }
-        var clock = setInterval(ticks, 1000);
+
         ticks();//先执行一次函数，消除刷新页面时初始全是0的影响。
     })()
 </script>

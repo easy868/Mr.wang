@@ -1,5 +1,30 @@
-a {
-  color: #666;
-  transform: translate(-50%); }
+@import url(bootstrap.css);
+@import url(reset.css);
+a { border-left: 1px solid #333; height: 1000px; width: 16.6666666667%; top: 130px; }
+
+div h1 { height: 100px; }
+div > h1 { background: #fff; border-color: #666; border-width: 1px; }
+div > h1:hover { font-size: 100px; }
+div > h1:after { content: '1'; }
+
+.class1, .class2, .class3 { width: 100px; }
+
+.h6 { height: 100px; }
+
+.h2 { height: 200px; }
+
+p { color: #fff; }
+
+h3 { width: 20px; }
+
+.a { background-image: url("a.png"); }
+
+.b { background-image: url("b.png"); }
+
+.c { background-image: url("c.png"); }
+
+a:hover { color: #999; }
+a:visited { color: #333; }
+a:after { content: '1'; height: 100px; color: #333; background: #fff; box-shadow: 2px 2px 2px #ff0; }
 
 /*# sourceMappingURL=scss-test2.css.map */

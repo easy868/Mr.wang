@@ -61,7 +61,7 @@
             num++;
             addTrans(); //添加过渡效果
             setTranslate(-num * oneW);  //改变位置
-        }, 5000);
+        }, 1000);
 
         function tEnd() {  //过渡结束后触发此函数，瞬间切换相同的图片
             if (num >= len - 1) {   //判断，控制num
@@ -102,11 +102,11 @@
                 num++;
                 addTrans();
                 setTranslate(-num * oneW);
-            }, 1000)
+            }, 10000)
         }
 
         function addTrans() {   //添加过渡效果
-            aul.css({'transition-duration': '.3s'});
+            aul.css({'transition-duration': '.5s'});
         }
 
         function removeTrans() {    //移除过渡效果
@@ -120,8 +120,6 @@
         function setPoint() {   //设置小圆点选中
             $('.focus-btn .btn').eq(num - 1).addClass('active').siblings().removeClass('active');
         }
-
-
     })(jQuery);
 </script>
 </body>

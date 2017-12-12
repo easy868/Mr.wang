@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<div class="d1">1</div>
+<div class="d2">2</div>
+
+<!--以下为js代码-->
+<script>
+    var a = 3
+    $('div').css('background','red').click(function () {
+        $(this).index()
+        $(this).attr('class')
+        $(this).removeAttr('class')
+    })
+</script>
+</body>
+</html>

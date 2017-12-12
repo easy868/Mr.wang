@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 动态文字滚动</title>
+    <style>
+        .aul { display: none; background: #00bfff; }
+        .hd { background: #999999; }
+    </style>
+</head>
+<body>
+<div class="hd">
+    <p class="p1">热点</p>
+    <p class="p2">内容区域</p>
+</div>
+<ul class="aul">
+    <li>新闻一</li>
+    <li>新闻二</li>
+    <li>新闻三</li>
+    <li>新闻四</li>
+</ul>
+
+<script>
+    var p1 = document.getElementsByClassName('p1')[0]
+    var p2 = document.getElementsByClassName('p2')[0]
+    var ali = document.getElementsByTagName('li')
+    var aul = document.getElementsByClassName('aul')[0]
+    var hd = document.getElementsByClassName('hd')[0]
+
+    var num = 0
+    window.onload = function () {
+        time = setInterval(function () {
+            if (num == ali.length) {
+                num = 0
+            }
+            p2.innerHTML = ali[num].innerHTML
+            num++
+        }, 500)
+    }
+    hd.onmouseover = function () {
+        clearInterval(time)
+        clearTimeout(t2)
+        aul.style.display = 'block'
+    }
+    hd.onmouseout = function () {
+        t2 = setTimeout(function () {
+            aul.style.display = 'none'
+        }, 1000)
+        time = setInterval(function () {
+            if (num == ali.length) {
+                num = 0
+            }
+            p2.innerHTML = ali[num].innerHTML
+            num++
+        }, 500)
+    }
+    aul.onmouseover = function () {
+        clearTimeout(t2)
+    }
+    aul.onmouseout = function () {
+        t2 = setTimeout(function () {
+            aul.style.display = 'none'
+        }, 1000)
+    }
+</script>
+</body>
+</html>

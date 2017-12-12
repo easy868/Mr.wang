@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>封装js $选择符</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+<!--以下为js-->
+<script>
+    function $(str) {
+        var type = ''
+        if (str.indexOf('#') == 0) {
+            type = 'id'
+            str = str.substring(1, str.length)
+        } else if (str.indexOf('.') == 0) {
+            type = 'class'
+            str = str.substring(1, str.length)
+        } else {
+            type = 'tag'
+            str = str.substring(1, str.length)
+        }
+        switch (type) {
+            case 'id':
+                return document.getElementById(str)
+            case 'class':
+                return document.getElementsByClassName(str)//byclassname兼容性问题
+            case 'tag':
+                return document.getElementsByTagName(str)
+        }
+    }
+    /*封装的函数存在的问题
+    1.byclassName兼容性问题
+     2.组操作问题
+     3.父级问题
+     4.如果传入的是对象呢?
+     */
+</script>
+</body>
+</html>

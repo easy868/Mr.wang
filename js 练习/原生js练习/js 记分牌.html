@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>js数据类型</title>
+</head>
+<body style="background: darkseagreen;">
+<input type="button" value="0">
+<input type="button" value="0">:
+<input type="button" value="0">
+<input type="button" value="0">
+
+<script>
+    var abtn = document.getElementsByTagName('input')
+    //    for (i = 0; i < abtn.length; i++) {
+    //        abtn[i].index = i
+    //        abtn[i].onclick = function () {
+    //            this.value++
+    //            if (this.value > 9) {
+    //                this.value = 0
+    //                if (abtn[this.index - 1] && this.index != 2) {
+    //                    abtn[this.index - 1].value++
+    //                }
+    //            }
+    //        }
+    //    }
+    for (var i = 0; i < abtn.length; i++) {
+        abtn[i].index = i
+        abtn[i].onclick = function () {
+            this.value++
+            if (this.value > 9) {
+                this.value = 0
+                if (abtn[this.index - 1] && this.index != 2) {
+                    abtn[this.index - 1].value++
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

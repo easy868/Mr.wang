@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>test页面</title>
+    <style>
+        #app { margin: 50px auto; padding: 20px; width: 600px; border-radius: 4px; border: 1px solid #e94b35; overflow: hidden; }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+            opacity: 0
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <temp1 :todo="msg2"></temp1>
+</div>
+<template id="temp1">
+    <div>
+        {{todo}}
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+
+    Vue.component('temp1', {
+        template: '#temp1',
+        props: ['todo']
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '我是数据',
+            msg2: 'msg222'
+        }
+    });
+
+    Vue.component('test', {})
+</script>
+</body>
+</html>

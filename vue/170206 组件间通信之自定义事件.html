@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue练习 组件间通信之自定义事件</title>
+    <style>
+        .app { margin: 50px auto; padding: 20px; width: 600px; border-radius: 4px; border: 1px solid #e94b35; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>子组件往外传递数据</h1>
+    <hr>
+    <!--@add="addAll()"表示当子组件事件发生时触发父亲的方法-->
+    <my-btn @add="addAll()"></my-btn>
+    <my-btn @add="addAll()"></my-btn>
+    <my-btn @add="addAll()"></my-btn>
+    <p>总共点击了 {{allNum}} 次</p>
+</div>
+<template id="my-btn">
+    <button @click="add()">点击了 {{num}} 次</button>
+</template>
+
+<script src="js/vue.js"></script>
+<script>
+    //实例化组件
+    Vue.component('my-btn', {
+        template: '#my-btn',
+        data() {
+            return {
+                num: 0
+            }
+        },
+        methods: {
+            add() {
+                this.num++;
+                this.$emit('add') //告诉外界触发了方法
+            }
+        }
+    });
+
+    //实例化vue
+    new Vue({
+        el: '.app',
+        data: {
+            allNum: 0
+        },
+        methods: {
+            addAll() {
+                this.allNum++;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

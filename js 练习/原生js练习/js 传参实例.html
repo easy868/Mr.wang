@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>16JS</title>
+</head>
+<body>
+单价<span>12.5元</span>&nbsp;数量：
+<input type="button" value="-">
+<input type="text" value="0">
+<input type="button" value="+">
+总价：<span>0元</span>
+<script>
+    var  ainp = document.getElementsByTagName('input')
+    var  as = document.getElementsByTagName('span')
+    var num = 0
+    ainp[2].onclick = function () {
+        num = parseInt(ainp[1].value)//num=parseint(ainp[1].value) num++  ainp[1].value=num
+        num++
+        ainp[1].value = num
+        sum()
+    }
+    ainp[0].onclick = function () {
+        num = parseInt(ainp[1].value)
+        num--
+        if(num<0){
+            num=0
+        }
+        ainp[1].value = num
+        sum()
+    }
+
+    function sum() {
+        as[1].innerText = parseFloat(as[0].innerText)*num + '元'
+        //parseFloat 转化为浮点数
+    }
+    /*   function sum(){
+     as[1].innerHTML=parseFloat(as(0).innerHTML)*num+'元'
+     }*/
+
+    //作业1 计算所有商品多列商品计价   要求计算总数量  的总价
+
+    //作业2  写一个记分牌 四列记分牌  31:50  思考实现逢10进位
+</script>
+</body>
+</html>

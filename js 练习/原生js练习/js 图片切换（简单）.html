@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>js 图片切换（简单）</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<img src="../img/1.png" alt="" id="img">
+<a href="#" id="prev"><</a>
+<a href="#" id="next">></a>
+
+<!--以下为js-->
+<script>
+    var img = document.getElementById('img')
+    var pr = document.getElementById('prev')
+    var ne = document.getElementById('next')
+    var arr = ['../img/1.png', '../img/2.png', '../img/3.png']
+    var num = 0
+    ne.onclick = function () {
+        num++
+        if (num == arr.length) {
+            num = 0
+        }
+        img.src = arr[num]
+    }//下一张
+    pr.onclick = function () {
+        num--
+        if (num < 0) {
+            num = arr.length - 1
+        }
+        img.src = arr[num]
+    }//上一张
+</script>
+</body>
+</html>

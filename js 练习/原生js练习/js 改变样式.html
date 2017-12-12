@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <title>js属性操作</title>
+    <style>
+    #di{ width: 100px; height: 50px; background: #00bfff; border:1px solid #1b6d85;}
+    </style>
+</head>
+<body>
+<div id="di">这是内容</div>
+<input type="text" name="" id="inp1" placeholder="输入样式名" value="">
+<input type="text" name="" id="inp2" placeholder="输入样式值">
+<input type="button" name="" id="inp3" value="改变">
+<input type="button" name="" id="inp4" value="还原">
+
+<!--以下为js-->
+<script>
+    var di=document.getElementById('di')
+    var inp1=document.getElementById('inp1')
+    var inp2=document.getElementById('inp2')
+    var inp3=document.getElementById('inp3')
+    var inp4=document.getElementById('inp4')
+
+    inp3.onclick=function () {
+        var a=inp1.value
+        var b=inp2.value
+        di.style[a]=b
+    }
+    inp4.onclick=function () {
+        di.style.cssText='' //所有样式值为空，不仅能清空，还能设置
+    }
+</script>
+</body>
+</html>

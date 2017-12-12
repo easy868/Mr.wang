@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="wrapper">
+    <input type="text" name="" id="">
+    <select name="" id="se">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" name="" id="">
+    <input type="button" name="" id="" value="计算">
+    结果：<span id="s"></span>
+</div>
+<script>
+    var ainp = document.getElementsByTagName('input')
+    var osp = document.getElementById('s')
+    var se = document.getElementById('se')
+    ainp[2].onclick = function () {
+        osp.innerHTML = math(se.value, ainp[0].value, ainp[1].value)
+    }
+    function math(c, d, e) {
+        switch (c) {
+            case '+':
+                return parseFloat(d) + parseFloat(e)
+            case '-':
+                return d - e
+            case '*':
+                return d * e
+            case '/':
+                return d / e
+        }
+        if (d == '' || e == '') {
+            return '值不能为空'
+        }
+    }
+</script>
+</body>
+</html>

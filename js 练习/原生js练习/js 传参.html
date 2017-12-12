@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 传参</title>
+</head>
+<body>
+
+
+<script>
+/*    var b = [20, 30]
+    function fun1(bb) {
+        var cc=bb
+        cc[0]++
+    }
+    fun1(b)
+    alert(b)
+    //私有变量外围访问不到，只有函数内部能访问
+    // 数组在传参过程中传递的是地址值而非值；函数传递的也是地址值*/
+    function fun2() {
+        arguments //实参参数集合(类数组)
+        var arr=arguments
+        for(i=0;i<arr.length;i++){
+            alert(arr[i])
+        }
+    }
+    fun2(1,2,3,4,5,6,7,8,9,0)
+</script>
+</body>
+</html>

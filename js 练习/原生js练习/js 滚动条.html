@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 滚动条</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        nav { top: 0; left: 0; width: 100%; height: 50px; background: #666; text-align: center; }
+        #ad { width: 100%; height: 100px; background: green; }
+        #aside { width: 50px; height: 150px; background: #FF0000; display: none; }
+        #go { width: 30px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: blueviolet; position: fixed; top: 80%; right: 5%; display: none; }
+    </style>
+</head>
+<body style="height: 1000px;">
+<div id="ad"></div>
+<nav>nav</nav>
+<div id="aside">侧边广告</div>
+<div id="go">GO</div>
+<script>
+    var ad = document.getElementById('ad')
+    var nav = document.getElementsByTagName('nav')[0]
+    var ads = document.getElementById('aside')
+    var go = document.getElementById('go')
+    window.onscroll = function () {
+        var body = document.body
+        if (body.scrollTop > parseFloat(getStyle(ad, 'height'))) {
+            nav.style.position = 'fixed'
+            ads.style.display = 'block'
+            ads.style.position = 'absolute'
+            var h = parseFloat(getStyle(ads, 'height'))
+            ads.style.top = body.scrollTop + (window.innerHeight - h) / 2 + 'px'
+            document.title = body.scrollTop
+        } else {
+            nav.style.position = 'static'
+            ads.style.display = 'none'
+
+        }
+        if (body.scrollTop > window.innerHeight / 2) {
+            go.style.display = 'block'
+            go.onclick = function () {
+                body.scrollTop = 0
+            }
+        } else {
+            go.style.display = 'none'
+
+        }
+    }
+    function getStyle(ele, style) {
+        return ele.currentStyle ? ele.currentStyle[style] : window.getComputedStyle(ele, null)[style]
+    }
+</script>
+</body>
+</html>

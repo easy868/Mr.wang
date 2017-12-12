@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 数组操作</title>
+</head>
+<body>
+
+<script>
+    /*    arr.push('你好') //在数组最后一位插入一个新元素，它有返回值返回新的数组长度
+     arr.unshift('不好') //在数组第一位插入一个新元素，它有返回值返回新的数组长度
+     arr.pop() //删除数组最后一个元素，它有返回值返回被删除元素
+     arr.shift() //删除数组第一个元素，返回值是被删除的元素
+     arr.splice(2,1,'e') //非常有用，可以替代增加和删除，从第二个开始截取一个并插入一个'e'
+     console.log(arr)
+     var aa = arr2.sort(
+     function (a, b) {
+     return b - a
+     } //原理冒泡排序
+     ) //默认字符串比较，只比较第一位字符的编码值。
+     console.log(aa)*/
+
+    /*  console.log(arr2.reverse()) //反转一个数组
+     var str = 'hello world'
+     str = str.split('').reverse().join('')
+     console.log(str)*/
+    /*   var p1 = {"name": 'wang', "age": '18', "sex": '男'}
+     var p2 = {"name": 'z', "age": '28', "sex": '女'}
+     var p3 = {"name": 'liu', "age": '38', "sex": '男'}
+     for (i in p1) {
+     alert(p1[i])
+     }*/
+    var wang = {
+        name: 'wang',
+        age: 18,
+        said: function () {
+            alert('我的名字是' + this.name + '我今年' + this.age + '岁')
+        }
+    }
+    wang.said()
+</script>
+</body>
+</html>

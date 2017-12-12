@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 定时器QQ实例</title>
+    <style>
+        * { margin: 0; padding: 0; }
+    </style>
+</head>
+<body>
+<div id="a" style="width: 18vw;height: 80vh;background: #00bfff;position: relative;margin-top: 20px;float: left;">主体
+    <div id="hd" style="width: 40px;height: 40px;background: #666;position: absolute;top: 0;right: 0;color: #fff;">头像</div>
+</div>
+<div id="bd" style="width: 100px;height: 90px;background: red;color: #fff;float: left;margin-top: 20px;display: none;">资料卡</div>
+
+<script>
+    var a = document.getElementById('a')
+    var hd = document.getElementById('hd')
+    var bd = document.getElementById('bd')
+
+    hd.onmouseover = function () {
+        bd.style.display = 'block'
+    }
+    hd.onmouseout = function () {
+        time=setTimeout(function () {
+            bd.style.display = 'none'
+        },2000)
+    }
+    bd.onmouseover=function () {
+        clearTimeout(time)
+    }
+    bd.onmouseout=function () {
+        setTimeout(function () {
+            bd.style.display = 'none'
+        },1000)
+    }
+</script>
+</body>
+</html>

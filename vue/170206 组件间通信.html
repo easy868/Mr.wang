@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue练习 组件间通信</title>
+    <style>
+        .app { margin: 50px auto; padding: 20px; width: 600px; border-radius: 4px; border: 1px solid #e94b35; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>组件之间的通信</h1>
+    <hr>
+    <my msg="通过props通信"></my>
+    <h1>多层组件的通信</h1>
+    <hr>
+    <parent :pp1="t1" :aa1="t2"></parent>
+</div>
+
+<template id="temp1">
+    <h4>{{msg}}</h4>
+</template>
+<template id="child1">
+    <p>{{p1}}</p>
+</template>
+<template id="child2">
+    <a href="">{{a1}}</a>
+</template>
+<template id="parent">
+    <div>
+        <child1 :p1="pp1"></child1>
+        <child2 :a1="aa1"></child2>
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script>
+    //1. 单层组件间的通信
+    Vue.component('my', {
+        template: '#temp1',
+        props: ['msg']
+    });
+    //2. 多层组件的通信
+    Vue.component('child1', {
+        template: '#child1',
+        props: ['p1']
+    });
+    Vue.component('child2', {
+        template: '#child2',
+        props: ['a1']
+    });
+    Vue.component('parent', {
+        template: '#parent',
+        props: ['pp1', 'aa1']
+    });
+
+    new Vue({
+        el: '.app',
+        data: {
+            t1: '外层数据1',
+            t2: '外层数据2'
+        }
+    });
+</script>
+</body>
+</html>

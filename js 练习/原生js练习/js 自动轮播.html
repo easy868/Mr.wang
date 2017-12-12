@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>js 自动轮播</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        #index { overflow: hidden; }
+        #index li { list-style: none; width: 14px; height: 16px; background: red; float: left; margin-left: 2px; text-align: center; line-height: 16px; }
+    </style>
+</head>
+<body>
+<img src="../img/1.png" alt="" id="img">
+<a href="#" id="prev"><</a>
+<a href="#" id="next">></a>
+<ul id="index"></ul>
+<!--以下为js-->
+<script>
+    var img = document.getElementById('img')
+    var pr = document.getElementById('prev')
+    var ne = document.getElementById('next')
+    var arr = ['../img/1.png', '../img/2.png', '../img/3.png']
+    var num = 0
+    var oul = document.getElementById('index')
+    var ali = document.getElementsByTagName('li')
+    for (i = 0; i < arr.length; i++) {
+        oul.innerHTML += '<li>' + (i + 1) + '</li>'
+    }
+    ne.onclick = function () {
+        num++
+        if (num == arr.length) {
+            num = 0
+        }
+        tab()
+    }//下一张
+    pr.onclick = function () {
+        num--
+        if (num < 0) {
+            num = arr.length - 1
+        }
+        tab()
+    }//上一张
+    for (i = 0; i < ali.length; i++) {
+        ali[i].index = i
+        ali[i].onmouseover = function () {
+            num = this.index
+            tab()
+        }
+    }
+    function tab() {
+        for (j = 0; j < ali.length; j++) {
+            ali[j].style.color = ''
+        }
+        ali[num].style.color = '#fff'
+        img.src = arr[num]
+    }
+    time = setInterval(function () {
+        num++
+        if (num == 3) {
+            num = 0
+        }
+        tab()
+    }, 1000)
+    img.onmouseover = function () {
+        clearInterval(time)
+    }
+    img.onmouseout = function () {
+        time=setInterval(function () {
+            num++
+            if (num == 3) {
+                num = 0
+            }
+            tab()
+        },1000)
+    }
+</script>
+</body>
+</html>

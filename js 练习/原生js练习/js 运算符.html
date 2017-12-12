@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>js 运算符</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<ul id="oul"></ul>
+
+<!--以下为js代码-->
+<script>
+    var a = [1,2,3]
+    var b = 2
+    var c=window
+    function fun(aa, bb, cc) {//函数定义时小括号里放的是形参（表面的参数），相当于声明了一个叫做a的局部变量。
+        alert(aa)
+        alert(bb)
+        alert(cc)
+    }
+    fun(fu1, b,c)//函数调用时小括号里放的是实参（实际参数），会把实参的值传递给形参，这个过程就叫做参数的传递
+    function fu1() {
+    123
+    }//传递函数和传递数组的问题
+</script>
+</body>
+</html>

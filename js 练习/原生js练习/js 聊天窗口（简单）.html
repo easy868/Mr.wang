@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>js聊天窗（简单）</title>
+    <style>
+        #box { width: 250px; height: 80px; border: 1px solid #1b6d85; overflow: auto; word-break: break-all; word-wrap: break-word; }
+        p { }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<textarea name="" id="txt" cols="30" rows="3"></textarea>
+<input type="color" name="" id="col">
+<input type="button" value="发送" id="btn">
+<!--以下为js-->
+<script>
+    var btn = document.getElementById('btn')
+    var box = document.getElementById('box')
+    var txt = document.getElementById('txt')
+    var col = document.getElementById('col')
+    btn.onclick = function () {
+        var col1 = col.value
+        box.innerHTML += '<p style="color:' + col1 + ';">' + txt.value + '</p>'
+        txt.value = ''
+        txt.focus()
+        box.scrollTop = 9999
+    }
+</script>
+</body>
+</html>

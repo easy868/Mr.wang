@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue-router</title>
+    <style>
+        .app { margin: 50px auto; padding: 20px; width: 600px; border-radius: 4px; border: 1px solid #e94b35; overflow: hidden; }
+        .active { color: #f00; font-size: 16px; }
+        .adiv { float: left; min-width: 70px; margin: 0; padding: 0; line-height: 40px; text-align: center; border: 1px solid #00b3ee; list-style: none; }
+        .adiv a:not(:last-child) { display: block; border-bottom: 1px dashed #f4e4c7; }
+        .sec { margin-left: 80px; padding: 10px; min-height: 102px; border: 1px dashed #ffb11c; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>页面路由</h1>
+    <hr>
+    <div class="adiv">
+        <router-link to="/h55">HTML5</router-link>
+        <router-link to="/java">Java</router-link>
+        <router-link to="/python">Python</router-link>
+    </div>
+    <section class="sec">
+        <router-view></router-view>
+    </section>
+</div>
+<!--路由模板-->
+<template id="h55">
+    <section>
+        <h3>h5学院</h3>
+        <p>掌握未来h5技术，站在时尚前沿</p>
+    </section>
+</template>
+<template id="java">
+    <section>
+        <h3>Java学院</h3>
+        <p>编程老大哥，历史悠久</p>
+    </section>
+</template>
+<template id="python">
+    <section>
+        <h3>Python学院</h3>
+        <p>火热的一个语言</p>
+    </section>
+</template>
+<script src="js/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    //创建组件
+    const h55 = Vue.extend({
+        template: '#h55'
+    });
+    const java = Vue.extend({
+        template: '#java'
+    });
+    const python = Vue.extend({
+        template: '#python'
+    });
+    const routes = [
+        {path: '/h55', component: h55},
+        {path: '/java', component: java},
+        {path: '/python', component: python}
+        //配置根路由
+    ];
+    //创建路由实例
+    const router = new VueRouter({
+        routes
+    });
+    //创建vue实例，并挂载
+    new Vue({
+        router
+    }).$mount('.app')
+</script>
+</body>
+</html>

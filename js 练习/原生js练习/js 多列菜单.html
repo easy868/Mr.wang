@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>多列菜单</title>
+    <style>
+        li.active a { background: red; }
+        .iul { display: none; }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="oli active">
+        <a href="">菜单</a>
+        <ul class="iul">
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+        </ul>
+    </li>
+    <li class="oli">
+        <a href="">菜单</a>
+        <ul class="iul">
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+        </ul>
+    </li>
+    <li class="oli">
+        <a href="">菜单</a>
+        <ul class="iul">
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+        </ul>
+    </li>
+    <li class="oli">
+        <a href="">菜单</a>
+        <ul class="iul">
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+        </ul>
+    </li>
+</ul>
+</body>
+<script>
+    var ali = document.getElementsByClassName('oli')
+    var iul = document.getElementsByClassName('iul')
+    for (i = 0; i < ali.length; i++) {
+        ali[i].ab = i
+        ali[i].onmouseover = function () {
+            for (j = 0; j < ali.length; j++) {
+                ali[j].className = 'oli'
+                iul[j].style.display = 'none'
+            }
+            this.className = 'oli active'
+            iul[this.ab].style.display = 'block'
+        }
+    }
+</script>
+</html>

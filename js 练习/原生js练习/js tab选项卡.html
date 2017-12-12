@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>js练习文件</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        .hd { width: 150px; list-style: none; overflow: hidden; }
+        .hd > li { float: left; width: 50px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: #666; }
+        .hd > li.active { color: #000; background: greenyellow; }
+        .bd { position: relative; width: 150px; height: 100px; background: darkgray; color: white; }
+        .bd div { position: absolute; width: 150px; height: 100px; display: none; color: #000; text-align: center; }
+    </style>
+</head>
+<body>
+<ul class="hd">
+    <li class="active">早餐</li>
+    <li>午餐</li>
+    <li>晚餐</li>
+</ul>
+<nav class="bd">
+    <div style="display: block;">111</div>
+    <div>222</div>
+    <div>333</div>
+</nav>
+</body>
+<script>
+    var ali = document.getElementsByTagName('li')
+    var adiv = document.getElementsByTagName('div')
+
+    for (i = 0; i < ali.length; i++) {
+        ali[i].ab = i
+        ali[i].onmouseover = function () {
+            for (j = 0; j < ali.length; j++) {
+                ali[j].className = ''
+                adiv[j].style.display = 'none'
+            }
+            this.className = 'active'
+            adiv[this.ab].style.display = 'block'
+        }
+    }
+</script>
+</html>

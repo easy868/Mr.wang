@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 时间</title>
+    <style>
+        #d1{ height: 50px; border:1px solid #666;border-radius: 20px;}
+    </style>
+</head>
+<body>
+<div id="d1"></div>
+<script>
+    var d1=document.getElementById('d1')
+
+    var t=new Date()
+    var y=t.getFullYear()
+    var mo=t.getMonth()
+    d1.innerHTML=mo
+
+</script>
+</body>
+</html>

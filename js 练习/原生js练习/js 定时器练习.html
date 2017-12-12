@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        html, body { height: 100%; background: #00bfff; }
+
+    </style>
+</head>
+<body>
+<div id="d1" style="width: 80vw;height: 50vh;background: #333;margin: 0 auto;text-align: center;color: #fff;position: relative;display: none;">
+    一个大广告
+    <input type="button" value="X" style="position: absolute;top: 0;right: 0;">
+</div>
+
+<script>
+    var d1=document.getElementById('d1')
+    var inp=document.getElementsByTagName('input')[0]
+    setTimeout(function () {
+        d1.style.display='block'
+        setTimeout(
+                function () {
+                    d1.style.display='none'
+                },3000
+        )
+    },1000)
+
+</script>
+</body>
+</html>

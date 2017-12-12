@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>jq</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; border: none; }
+        .container > div { background: green; width: 25%; }
+        .container { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; align-content: center; }
+    </style>
+</head>
+<body>
+<p>这是数据</p>
+<input type="button" value="请求">
+<!--以下为js-->
+<script>
+    /*    var p=document.querySelector('p')
+     var btn=document.querySelector('input')
+     btn.onclick=function () {
+     var xhr=new XMLHttpRequest()  //new实例化操作
+     xhr.open('get','http://127.0.0.1:80/data/server.txt',true)
+     xhr.send()
+     xhr.onreadystatechange=function () {
+     if(xhr.status==200&&xhr.readyState==4){
+
+     }
+     }
+     }*/
+    //不刷新修改页面
+    /*    var xhr = new Date();
+     function p() {
+     this.sex3 = '';
+     this.age = '0';
+     this.name = '';
+     this.height = 50; //以上为属性
+     this.say = function (str) {
+     console.log('我叫' + this.name + ':' + str)
+     };
+     this.eat = function (food) {
+     alert('我叫' + this.name + ' 我吃了' + food);
+     this.height++
+     }
+     }
+     var luo = new p();
+     var wang = new p();
+     luo.name = '罗浩';
+     luo.age = 12;
+     luo.height = 177;
+     luo.say('大家好');
+     luo.eat('包子')*/
+    //    var xhr=new XMLHttpRequest();
+    //第一步实例化 兼容性问题 IE不识别XMLHttpRequest()
+    //    var xhrIe=new ActiveXObject('Microsoft.XMLHTTP');
+    /*    var xhr
+     if(XMLHttpRequest){
+     xhr=new XMLHttpRequest()
+     }else {
+     xhr=new ActiveXObject()
+     } //兼容性写法，兼容IE*/
+    /*   try {
+     xhr = new ActiveXObject()
+     } catch (e) {
+     xhr = new XMLHttpRequest()
+     }//异常捕获写法*/
+    throw new Error('哈哈 你错了')
+    alert(123)
+    
+</script>
+</body>
+</html>

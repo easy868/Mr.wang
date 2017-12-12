@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 滚动事件</title>
+    <style>
+        * { margin: 0; padding: 0; border: none; }
+        nav { left: 0; top: 0; width: 100%; height: 50px; background: #666; }
+        #ad { width: 100%; height: 300px; background: green; }
+        #adslide { position: absolute; left: 10px; top: 50%; display: none; width: 100px; height: 300px; background: #999; }
+        #totop { width: 50px; height: 50px; background: blue; position: fixed; bottom: 30px; right: 30px; color: #fff; font-size: 16px; line-height: 50px; display: none; }
+    </style>
+</head>
+<body style="height: 2000px;">
+<div id="ad"></div>
+<nav></nav>
+<div id="adslide"></div>
+<div id="totop">回到顶部</div>
+<script>
+    //    document.body.onclick=function () {
+    //        alert(window.innerHeight)
+    //        alert(this.scrollWidth)
+    //    }
+    //    window.onscroll=function () {
+    //        document.title=document.body.scrollTop
+    //    }
+    var ad = document.getElementById('ad')
+    var nav = document.getElementsByTagName('nav')[0]
+    var ads = document.getElementById('adslide')
+    var totop = document.getElementById('totop')
+    window.onscroll = function () {
+        var body = document.body
+        if (body.scrollTop > parseInt(getStyle(ad, 'height'))) {
+            nav.style.position = 'fixed'
+            ads.style.display = 'block'
+            var h = parseInt(getStyle(ads, 'height'))
+            ads.style.top = body.scrollTop + (window.innerHeight - h) / 2 + 'px'
+            if (body.scrollTop > 300) {
+                totop.style.display = 'block'
+            } else {
+                totop.style.display = 'none'
+            }
+        } else {
+            nav.style.position = 'static'
+            ads.style.display = 'none'
+        }
+    }
+    function getStyle(ele, style) {
+        return ele.currentStyle ? ele.currentStyle[style] : window.getComputedStyle(ele, null)[style]
+    }//封装的函数获取元素的样式
+    top.onclick = function () {
+        document.body.scrollTop = 0
+        totop.style.display = 'none'
+    }
+</script>
+</body>
+</html>

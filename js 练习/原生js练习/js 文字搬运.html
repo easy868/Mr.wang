@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 文字搬运</title>
+</head>
+<body>
+<div id="d1" style="width:100px;height: 100px;border: 1px solid #000;" contenteditable="true"></div>
+<!--这是需要搬运的文字-->
+<div id="d2" style="width:100px;height: 100px;border: 1px solid #000;"></div>
+<!--↑这是搬运到的地方-->
+<span id="s1">0</span>
+<span id="s2">0</span>
+<input type="button" value="开始" id="btn">
+
+<script>
+    function ui(str) {
+        var type = ''
+        if (str.indexOf('#') == 0) {
+            type = 'id'
+            str = str.substring(1, str.length)
+        } else if (str.indexOf('.') == 0) {
+            type = 'class'
+            str = str.substring(1, str.length)
+        } else {
+            type = 'tag'
+            str = str.substring(1, str.length)
+        }
+        switch (type) {
+            case 'id':
+                return document.getElementById(str)
+            case 'class':
+                return document.getElementsByClassName(str)//byclassname兼容性问题
+            case 'tag':
+                return document.getElementsByTagName(str)
+        }
+    }
+    var btn = ui('#btn')
+    var d1 = ui('#d1')
+    var d2 = ui('#d2')
+    var s1 = ui('#s1')
+    var s2 = ui('#s2')
+
+    btn.onclick = function () {
+        var str = d1.innerText //声明str为需要搬运的文字
+        s2.innerText = str.length //显示str的长度
+        time = setInterval(function () {
+            var str1 = d1.innerText
+            s1.innerText = str1.length //显示长度
+            d2.innerText += str1.substring(0, 1) //把str1的文字搬运到d2
+            d1.innerText = str1.substring(1) //截取d1的文字
+            if (str1.length == 0) {
+                clearInterval(time)
+            }// 判断是否搬运完，搬运完了停止定时器
+        }, 500)
+    }
+</script>
+</body>
+</html>

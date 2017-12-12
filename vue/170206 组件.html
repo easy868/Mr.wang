@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue练习 组件</title>
+    <style>
+        .app { margin: 50px auto; padding: 20px; width:600px; border-radius: 4px; border: 1px solid #e94b35; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>构建组件的几种方法</h1>
+    <hr>
+    <aa1></aa1>
+    <bb1></bb1>
+    <aa2></aa2>
+    <bb2></bb2>
+    <cc1></cc1>
+    <cc2></cc2>
+    <parent></parent>
+    <p>
+        8.验证组件中data必须是函数实例,点击+1每个都是独立的
+        <my-btn></my-btn>
+        <my-btn></my-btn>
+        <my-btn></my-btn>
+    </p>
+</div>
+<template id="temp1">
+    <p>5.HTML里直接写全局组件 || {{msg}}</p>
+</template>
+<script type="text/template" id="temp2">
+    <p>6.script里直接写全局组件</p>
+</script>
+<template id="my-btn">
+    <button type="button" @click="count+=1">{{count}}</button>
+</template>
+<script src="js/vue.js"></script>
+<script>
+    //  1. extend方式构建全局组件
+    let a1 = Vue.extend({
+        template: `
+        <p>1.这是extend方式构建的全局组件</p>
+        `
+    });
+    Vue.component('aa1', a1);
+
+    //2. extend方式构建局部组件,在components中局部注册
+    let b1 = Vue.extend({
+        template: `
+        <p>2.这是extend方式构建的局部组件</p>
+       `
+    });
+
+    //3. 不使用extend方式构建组件
+    Vue.component('aa2', {
+        template: `
+       <p>3.这是不使用extend方式构建的全局组件</p>
+       `
+    });
+    /* 5. template模板的方式构建组件,在HTML里写<template>这里是组件结构</template>，
+        template需要写一个选择器（id/class...）,然后在Vue.component('这是组件名',{template:'选择器'})关联起来*/
+    Vue.component('cc1', {   //cc1是组件名，#temp1是选择器（用选择器关联起来）
+        template: '#temp1',
+        data() { //组件中可以使用data，但必须是个函数，有返回值
+            return {
+                msg: '这是组件中的data中的数据'
+            }
+        }
+    });
+    //6. script方式构建组件，写在script标签里，方法和template标签形式一样，只不过多了个type='text/template'
+    Vue.component('cc2', {
+        template: '#temp2'
+    });
+    //7. 父子组件构建方法
+    let child1 = Vue.extend({
+        template: `
+        <span>孩子组件1</span>
+       `
+    });
+    let child2 = Vue.extend({
+        template: `
+        <span>孩子组件2</span>
+       `
+    });
+    Vue.component('parent', {    //构建父亲组件
+        components: {
+            'span1': child1,
+            'span2': child2
+        },
+        template: `
+        <div>
+            <h4>7.这是父亲组件</h4>
+            <span1></span1>
+            <span2></span2>
+        </div>
+        `
+    });
+    //8. 验证组件中data必须是函数实例
+    Vue.component('my-btn', {
+        template: '#my-btn',
+        data() {
+            return {
+                count: 0
+            }
+        }
+    });
+    new Vue({
+        el: '.app',
+        data: {},
+        components: {   //注册局部组件
+            'bb1': b1,
+            'bb2': {    //4.不用extend直接注册局部组件
+                template: `
+                <p>4.这是不使用extend方式构建的局部组件</p>
+                `
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

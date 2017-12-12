@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>getstyle</title>
+    <style>
+        div { width: 100px; height: 100px; background: red; margin-top: 50px; }
+    </style>
+</head>
+<body>
+<div id="d1">123</div>
+
+<script>
+    function getStyle(ele,style) {
+        return ele.currentStyle?ele.currentStyle[style]:window.getComputedStyle(ele,null)[style]
+    }//封装一个兼容IE的函数，获取元素的样式
+    var d1=document.getElementById('d1')
+    alert(getStyle(d1,'height'))
+</script>
+</body>
+</html>

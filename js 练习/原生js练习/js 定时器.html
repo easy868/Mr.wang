@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js定时器</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        html, body { height: 100%; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!--    <div class="header">头部
+            <input type="button" value="x" id="btn"></div>
+        &lt;!&ndash;    <input type="button" value="开始">
+            <input type="button" value="暂停">&ndash;&gt;-->
+    <div style="width: 100px;height: 200px;background: #00bfff;position: relative;float: left;">
+        <div id="hd" style="width: 30px;height: 30px;background: #000;position: absolute;right: 0;top: 30px;"></div>
+    </div>
+    <div id="z" style=" width: 50px;height: 50px;background: #999;float: left;transition: linear 0.5s"></div>
+</div>
+<script>
+    /*    var arr = ['red', 'yellow', 'green']
+     var i = 0
+     var inp = document.getElementsByTagName('input')
+     var time = null
+     var onoff = false
+     inp[0].onclick = function () {
+     if (!onoff) {
+     time = setInterval(function () {
+     document.body.style.background = arr[i]
+     i++
+     if (i == arr.length) {
+     i = 0
+     }
+     }, 1000)
+     onoff=true
+     }
+     }
+     inp[1].onclick = function () {
+     clearInterval(time)
+     onoff=false
+     }*/
+    //setInterval定时器
+    /*    var num = 0
+     var time=setTimeout(function () {
+     document.title=num
+     }, 1000)
+     clearTimeout(time)*/
+    //setTimeout() 类似于定时炸弹
+    var ad = document.getElementsByTagName('div')[1]
+    var inp = document.getElementById('btn')
+    setTimeout(function () {
+        ad.style.display = 'block'
+        setTimeout(function () {
+            ad.style.display = 'none'
+        }, 2000)
+    }, 2000)
+    btn.onclick = function () {
+        ad.style.display = 'none'
+    }
+    //定时弹出，定时隐藏
+    /*    var str = '123'
+     var str1=new String('abc') //实例化 作用域和面向对象。
+     alert(typeof str1)
+     var p1={name:'luo',age:18,sex:'男'}
+     var p1={name:'luo',age:18,sex:'男'}
+     console.log(p1.name)*/
+</script>
+</body>
+</html>

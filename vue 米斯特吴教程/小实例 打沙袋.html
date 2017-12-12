@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>打沙袋</title>
+    <style>
+        #app { font-size: 16px; margin: 50px auto; padding: 30px; width: 800px; border-radius: 4px; border: 5px solid #00b3ee; overflow: hidden; }
+        .bag { width: 200px; height: 539px; margin: 0 auto; background: url("img/bag.png") no-repeat center; background-size: contain; }
+        .bag.active { background-image: url(img/bag-burst.png); }
+        .progress { width: 200px; border: 2px solid #000; border-radius: 2px; margin: 20px auto; }
+        .progress-bar { height: 20px; background: #f00; }
+        .handle { text-align: center; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="bag" :class="{active:control}"></div>
+    <div class="progress">
+        <div class="progress-bar" :style="{width:health+'%'}"></div>
+    </div>
+    <div class="handle">
+        <button @click="beat()">打打打</button>
+        <button @click="restart()">重新来</button>
+    </div>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+
+    // 实例化vue对象
+    new Vue({
+        el: '#app',
+        data: {
+            health: 100,
+            control: false
+        },
+        methods: {
+            beat() {
+                this.health -= 20;
+                if (this.health <= 0) {
+                    this.health = 0;
+                    this.control=true;
+                }
+            },
+            restart() {
+                this.health = 100;
+                this.control=false;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

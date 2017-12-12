@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>组件间通信</title>
+    <style>
+        .app { margin: 50px auto; padding: 20px; width: 600px; border-radius: 4px; border: 1px solid #e94b35; overflow: hidden; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <temp1 msg="这是传的数据"></temp1>  <!--传入数据-->
+    <temp2></temp2>
+</div>
+
+<template id="temp1">
+    <div>
+        <h1>今天0-8°{{msg}}</h1>   <!--在模板中使用-->
+    </div>
+</template>
+<template id="temp2">
+    <div>
+        <p>好的我知道了 {{msg2}}</p>
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.component('temp1', {
+        template: '#temp1',
+        props: ['msg']  //定义props传递数据
+    });
+    Vue.component('temp2', {
+        template: '#temp2',
+        props: ['msg2']
+    });
+
+    new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>
+</body>
+</html>

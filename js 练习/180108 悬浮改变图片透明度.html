@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>改变图片透明度</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        #box {width: 200px;height: 200px;margin: 100px auto;background: #f00;opacity: .3;}
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    let box = document.querySelector('#box');
+    let btn = document.querySelector('.btn');
+    let timer = null;
+    let alpha = 30;
+
+    function startMove(target) {
+        clearInterval(timer);
+        let speed = 0;
+        if (alpha < target) {
+            speed = 10;
+        } else {
+            speed = -10;
+        }
+        timer = setInterval(function () {
+            if (alpha === target) {
+                clearInterval(timer);
+            } else {
+                alpha += speed;
+                box.style.opacity = alpha / 100;
+            }
+        }, 30)
+    }
+
+    box.onmouseover = function () {
+        startMove(100);
+
+    };
+    box.onmouseout = function () {
+        startMove(30);
+    }
+</script>
+</body>
+</html>

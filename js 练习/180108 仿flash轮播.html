@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿flash轮播</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        body { background: #666; }
+        ul { padding: 0; margin: 0; }
+        li { list-style: none; }
+        img { border: 0; }
+        .play { width: 400px; height: 430px; margin: 50px auto 0; background: #999; font: 12px Arial; }
+        .big_pic { width: 400px; height: 320px; overflow: hidden; border-bottom: 1px solid #ccc; background: #222; position: relative; }
+        .big_pic li { width: 400px; height: 320px; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 0; background: url(img/loading.gif) no-repeat center center; }
+        .prev { width: 60px; height: 60px; background: url(img/btn.gif) no-repeat; position: absolute; top: 130px; left: 10px; z-index: 3001; opacity: .1; cursor: pointer;transition: opacity .3s linear; }
+        .next { width: 60px; height: 60px; background: url(img/btn.gif) no-repeat 0 -60px; position: absolute; top: 130px; right: 10px; z-index: 3001; opacity: .1; cursor: pointer;transition: opacity .3s linear; }
+        .next:hover, .prev:hover {opacity: 1;transition: opacity .3s linear;}
+        .text { position: absolute; left: 10px; top: 302px; z-index: 3000; color: #ccc; }
+        .length { position: absolute; right: 10px; bottom: 4px; z-index: 3000; color: #ccc; }
+        .bg { width: 400px; height: 25px; background: #000; filter: alpha(opacity=60); opacity: 0.6; position: absolute; z-index: 2999; bottom: 0; left: 0; }
+        .small_pic { width: 380px; height: 94px; position: relative; top: 7px; left: 10px; overflow: hidden; }
+        .small_pic ul { height: 94px; position: absolute; top: 0; left: 0; }
+        .small_pic li { width: 120px; height: 94px; float: left; padding-right: 10px; background: url(img/loading.gif) no-repeat center center; cursor: pointer; opacity: 0.4;transition: opacity .2s linear; }
+        .small_pic li:hover {opacity: 1 !important;transition: opacity .2s linear;}
+        .small_pic img { width: 100%; height: 94px; }
+        .box {position: relative;}
+    </style>
+</head>
+<body>
+<div id="playimages" class="play">
+    <div class="box">
+        <ul class="big_pic">
+            <li style="z-index:1;"><img src="img/1.jpg"/></li>
+            <li><img src="img/2.jpg"/></li>
+            <li><img src="img/3.jpg"/></li>
+            <li><img src="img/4.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/6.jpg"/></li>
+        </ul>
+        <div>
+            <div class="prev"></div>
+            <div class="next"></div>
+            <div class="text">加载图片说明……</div>
+            <div class="length">计算图片数量……</div>
+            <div class="bg"></div>
+        </div>
+    </div>
+    <div class="small_pic">
+        <ul>
+            <li style="opacity: 1;"><img src="img/1.jpg"/></li>
+            <li><img src="img/2.jpg"/></li>
+            <li><img src="img/3.jpg"/></li>
+            <li><img src="img/4.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/6.jpg"/></li>
+        </ul>
+    </div>
+</div>
+<script>
+    (function () {
+        //获取元素
+        let prev = document.querySelector('.prev');
+        let next = document.querySelector('.next');
+        let aLi = document.querySelectorAll('.big_pic li');
+        let smLi = document.querySelectorAll('.small_pic li');
+        let smUl = document.querySelector('.small_pic ul');
+        let sm
+        let now = 0;
+        let nowIdx = 1;
+        smUl.style.width = smLi[0].offsetWidth * smLi.length + 'px';
+        //点击小图切换大图
+        for (let i = 0; i < smLi.length; i++) {
+            smLi[i].onclick = function () {
+                if (i === now) return;  //如果点击的是当前小图，不切换
+                now = i;
+                tabs();
+            };
+
+        }
+        //点击箭头切换
+        next.onclick = function () {
+            now++;
+            if (now === smLi.length) {
+                now = 0;
+            }
+            tabs();
+        };
+        prev.onclick = function () {
+            now--;
+            if (now < 0) {
+                now = smLi.length - 1;
+            }
+            tabs();
+        };
+
+        //封装切换函数
+        function tabs() {
+            aLi[now].style.zIndex = nowIdx++;
+            aLi[now].style.height = 0;
+            move(aLi[now], 'height', 320);
+            for (let i = 0; i < smLi.length; i++) {
+                smLi[i].style.opacity = '.4';
+            }
+            smLi[now].style.opacity = '1';
+            smUl.style.transform = 'translate3d(' + x + 'px,0,0)'
+        }
+
+        //封装运动函数
+        function move(obj, attr, target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                let cur = 0;
+                if (attr === 'opacity') {
+                    cur = Math.round(parseFloat(getComputedStyle(obj, null)[attr]) * 100);
+                } else {
+                    cur = parseInt(getComputedStyle(obj, null)[attr]);
+                }
+                let speed = (target - cur) / 6;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (cur === target) {
+                    clearInterval(obj.timer);
+                } else {
+                    if (attr === 'opacity') {
+                        obj.style[attr] = (cur + speed) / 100;
+                    } else {
+                        obj.style[attr] = cur + speed + 'px';
+                    }
+                }
+            }, 30);
+        }
+    })()
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="Mr.wang" name="author"/>
+    <title>首页</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <nav class="navbar  navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">响应式导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index2.html" style="padding-right: 60px;"><strong><i class="icon fa fa-plane"></i> LOGO</strong></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav" id="main-nav">
+                    <li class="active"><a href="#">系统首页</a></li>
+                    <li><a href="#">用户管理</a></li>
+                    <li><a href="#">报警管理</a></li>
+                    <li><a href="#">运行日志</a></li>
+                    <li><a href="#">报表查询</a></li>
+                    <li><a href="#">维修信息</a></li>
+                    <li><a href="#">系统日历</a></li>
+                    <li><a href="#">模式管理</a></li>
+                    <li><a href="#">窗口管理</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            管理员 <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> 用户</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="active">
+                    <a href="#"><i class="fa fa-sitemap"></i> 数据图表<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="chart.html">Charts JS</a></li>
+                        <li><a href="morris-chart.html">Morris Chart</a></li>
+                    </ul>
+                </li>
+                <li><a href="##" class=""><i class="fa fa-table"></i>报警页面</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <iframe src="table.html" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <div id="box"></div>
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<script src="assets/js/jquery-1.10.2.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.metisMenu.js"></script>
+<script src="assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义的Js -->
+<script src="assets/js/custom-scripts.js"></script>
+<script>
+    $(document).ready(function () {
+        // 设置iframe高度
+        setHeight();
+        window.onresize=function () {
+            setHeight();
+        };
+        //顶部导航点击加样式
+        $('#main-nav li').on('click', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+        //侧边栏点击加样式
+        $('#side-menu li').on('click', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+        // 设置iframe高度
+        function setHeight() {
+            var wHeight=window.innerHeight||document.documentElement.clientHeight;
+            document.getElementById('page-wrapper').style.height=wHeight-4+'px';
+        }
+    });
+</script>
+</body>
+</html>

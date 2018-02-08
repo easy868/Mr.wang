@@ -18,19 +18,22 @@
         .sub-nav a { background: #faebcc; border-bottom: 1px solid #2aabd2; }
         .sub-nav li:last-child a { border-bottom: none; }
     </style>
-    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
     <script>
         $(function () {
-            $('.nav li').hover(function () {
-                $(this).children('.sub-nav').stop().slideToggle()
+            $('.one').hover(function () {
+                $(this).children('.sub-nav').stop().slideToggle();
             });
+            $('.sub-nav li').click(function () {
+                $(this).children('.sub-nav').slideToggle()
+            })
         })
     </script>
 </head>
 <body>
 <div class="nav">
     <ul class="clearfix">
-        <li>
+        <li class="one">
             <a href="#">服装</a>
             <ul class="sub-nav">
                 <li><a href="#">二级菜单超长菜单+</a>
@@ -44,7 +47,7 @@
                 <li><a href="#">二级菜单</a></li>
             </ul>
         </li>
-        <li>
+        <li class="one">
             <a href="#">数码用品</a>
             <ul class="sub-nav">
                 <li><a href="#">二级菜单</a></li>
@@ -52,7 +55,7 @@
                 <li><a href="#">二级菜单</a></li>
             </ul>
         </li>
-        <li>
+        <li class="one">
             <a href="#">家电</a>
             <ul class="sub-nav">
                 <li><a href="#">二级菜单</a></li>
@@ -60,7 +63,7 @@
                 <li><a href="#">二级菜单</a></li>
             </ul>
         </li>
-        <li>
+        <li class="one">
             <a href="#">生活用品</a>
             <ul class="sub-nav">
                 <li><a href="#">二级菜单</a></li>

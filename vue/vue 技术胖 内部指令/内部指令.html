@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>vue 指令</title>
+    <link rel="stylesheet" href="assets/reset.css">
+    <style>
+        td {background: #f00;}
+        tr {border-bottom: 1px solid #0f0;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2 v-text="msg"></h2>
+    <h2 v-html="msg2"></h2>
+    <div v-if="isLogin">登陆成功</div>
+    <div v-else-if="loginAll">请登录</div>
+    <div v-show="loginAll">我是else</div>
+    <div class="box" v-for="(item,index) in sortList">
+        {{item}}
+    </div>
+    <ul>
+        <li v-for="(student,index) in sortStudent">
+            {{student.name}}____{{student.age}}
+        </li>
+    </ul>
+    <div>
+        <p>得分：{{score}}</p>
+        <div>
+            <button v-on:click="add">加</button>
+            <button v-on:click="reduce">减</button>
+        </div>
+    </div>
+    <input type="text" v-model.number="vModel">
+    <p>{{vModel}}</p>
+    <label><input type="radio" value="男" v-model="sex">男</label>
+    <label><input type="radio" value="女" v-model="sex">女</label>
+    <p>{{sex}}</p>
+    <div :class="isOk?'aa':'bb'">我是一个div，我来演示v-bind</div>
+    <div :style="{color:'#f00',fontSize:'24px'}">我要绑定style</div>
+    <div :style="styleObj">我要绑定style</div>
+    <div v-wang="color">我是自定义指令 Vue.directive</div>
+    <table>
+        <thead>
+        <tr>
+            <td>你好</td>
+            <td>哪里的颜色</td>
+        </tr>
+        </thead>
+    </table>
+    <wang></wang>
+    <temp1></temp1>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.directive('wang', function (el, binding) {
+        el.style = 'color:' + binding.value;
+        console.log(binding)
+    });
+    Vue.component('wang', {
+        template: `<h2 class="globalTemp">我是全局组件h2</h2>`
+    });
+    let app = new Vue({
+        el: '#app',
+        data: {    //数据
+            msg: '我是msg',
+            msg2: '<span>我是span</span>',
+            isLogin: true,
+            loginAll: false,
+            list: [11, 22, 33, 66, 6, 4],
+            students: [
+                {name: '王', age: 32},
+                {name: '靖', age: 30},
+                {name: '伟', age: 21},
+                {name: '你好', age: 45}
+            ],
+            score: 0,
+            vModel: ' 我是双向数据绑定',
+            sex: '',
+            aaa: 'www.baidu.com',
+            isOk: true,
+            styleObj: {
+                color: '#00f',
+                border: '1px solid #333'
+            },
+            color: '#f00'
+        },
+        components:{
+          'temp1':{
+              template:`<h3>我是局部模板</h3>`
+          }
+        },
+        computed: {  //计算属性
+            sortList() {
+                return this.list.sort(sortNumber)
+            },
+            sortStudent() {
+                return sortByKey(this.students, 'age')
+            }
+        },
+        methods: { //方法
+            add() {
+                this.score++;
+            },
+            reduce() {
+                this.score--;
+            }
+        }
+    });
+
+    //外部函数
+    function sortNumber(a, b) {
+        return a - b;
+    }
+
+    function sortByKey(arr, key) {
+        return arr.sort(function (a, b) {
+            let x = a[key];
+            let y = b[key];
+            return x - y;
+        })
+    }
+    console.log(
+        document.documentElement.clientWidth,
+        document.body.clientWidth
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>树形菜单</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/scss-test2.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .trees .tree-checkbox, .tree-title, .tree .glyphicon {display: inline-block;vertical-align: middle;height: 26px;line-height: 26px;cursor: pointer;}
+        .trees .tree-checkbox {margin-right: 8px;margin-top: 0;outline: none;}
+        .trees .tree-menu {margin-left: 15px;}
+        .trees .tree-title, .tree input[type='checkbox'] {cursor: pointer;}
+        .trees .tree-title:hover {color: #8a6d3b;}
+        .trees .tree-menu {display: none;}
+        .trees .glyphicon {font-size: 26px;}
+        .trees .fa {margin-right: 5px;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <ul class="trees">
+                <li>
+                    <input class="tree-checkbox" type="checkbox" cateid="1"><span class="tree-title"> <i class="fa fa-plus-square-o"></i>一级</span>
+                    <ul class="tree-menu">
+                        <li>
+                            <input class="tree-checkbox" type="checkbox" cateid="2"><span class="tree-title"><i class="fa fa-plus-square-o"></i>2级</span>
+                            <ul class="tree-menu">
+                                <li>
+                                    <input class="tree-checkbox" type="checkbox" cateid="3"><span class="tree-title">3级</span>
+                                </li>
+                                <li>
+                                    <input class="tree-checkbox" type="checkbox" cateid="4"><span class="tree-title">3级</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <input class="tree-checkbox" type="checkbox" cateid="10"><span class="tree-title">一级</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    (function ($) {
+        var arr = [];
+        //点击展开收起菜单
+        $('.tree-title').on('click', function () {
+            $(this).next().slideToggle('fast');
+            $(this).find('.fa').toggleClass('fa-minus-square-o fa-plus-square-o')
+        });
+        //复选框选中事件
+        $('.tree-checkbox').on('click', function () {
+            if ($(this).prop('checked')) {
+                $(this).parent('li').find('.tree-checkbox').prop('checked', true);
+                arr.push($(this).parent('li').find('.tree-title').text());
+            } else {
+                $(this).parent('li').find('.tree-checkbox').prop('checked', false);
+                $(this).parent('li').find('.tree-title').text();
+            }
+        });
+    })(jQuery)
+</script>
+</body>
+</html>

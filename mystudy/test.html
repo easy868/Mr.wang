@@ -8,9 +8,26 @@
     <meta content="telephone=no,email=no" name="format-detection">
     <title>mystudy 测试页</title>
     <!--<link rel="stylesheet" href="css/bootstrap.css">-->
-    <link rel="stylesheet" href="css/scss-test2.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .list {display: inline-block; background: #f1f1f1;color: #fff;padding: 20px;text-shadow: 2px 0 0 #000, 0 2px 0 #000, -2px 0 0 #000, 0 -2px 0 #000;font-size: 30px;position: relative;animation: move 5s linear infinite;}
+        @keyframes move {
+            0% {
+                transform: translate(0, 50px) skew(50deg);
+            }
+            50% {
+                transform: translate(200px, 50px) skew(270deg);
+            }
+            100% {
+                transform: translate(0, 50px) skew(0);
+            }
+        }
+    </style>
 </head>
 <body>
+<div class="list">
+    二笔樊金辉
+</div>
 
 
 <script src="js/jquery-3.2.1.js"></script>

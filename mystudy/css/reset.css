@@ -3,7 +3,7 @@ body { font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragi
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 *{box-sizing:border-box;}
 ul, ol, li { list-style:none;}
-a { text-decoration: none; }
+a { text-decoration: none;color: inherit; }
 img { vertical-align: middle; }
 .clearfix:after { content: ''; display: block; height: 0; visibility: hidden; clear: both; }
 /*重置样式 css reset*/

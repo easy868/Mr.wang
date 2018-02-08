@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多个div变宽</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .box {margin-bottom: 20px;width: 200px;height: 100px;border: 5px solid #333;background: #f00;}
+        .line {width: 1px;height: 600px;background: #f00;position: absolute;left: 400px;top: 0;}
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="line"></div>
+<script>
+    let box = document.querySelectorAll('.box');
+    let btn = document.querySelector('.btn');
+
+    for (let i = 0; i < box.length; i++) {
+        box[i].timer = null;  //每个物体单独开一个定时器
+        box[i].onmouseover = function () {
+            move(this, 400);    //传递this
+        };
+        box[i].onmouseout = function () {
+            move(this, 200);
+        }
+    }
+
+    function move(obj, target) {
+        clearInterval(obj.timer);  //清除自己的定时器
+        obj.timer = setInterval(function () {  //开启自己的定时器
+            let speed = (target - obj.offsetWidth) / 5;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+            if (obj.offsetWidth === target) {
+                clearInterval(obj.timer);
+            } else {
+                obj.style.width = obj.offsetWidth + speed + 'px';
+            }
+        }, 30)
+    }
+</script>
+</body>
+</html>

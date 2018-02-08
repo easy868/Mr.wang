@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多个div淡入淡出</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .box { margin-bottom: 20px;width: 200px;height: 200px;border: 5px solid #333;background: #f00;opacity: .3;}
+        .line { width: 1px;height: 600px;background: #f00;position: absolute;left: 400px;top: 0;}
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="line"></div>
+<script>
+    let box = document.querySelectorAll('.box');
+    let btn = document.querySelector('.btn');
+
+    for (let i = 0; i < box.length; i++) {
+        box[i].alpha = 30;
+        box[i].onmouseover = function () {
+            move(this, 100);
+        }
+        box[i].onmouseout = function () {
+            move(this, 30);
+        }
+    }
+
+    function move(obj, target) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            let speed = (target - obj.alpha) / 5;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+            if (obj.alpha == target) {
+                clearInterval(obj.timer);
+            } else {
+                obj.alpha += speed;
+                obj.style.opacity = obj.alpha / 100;
+            }
+        }, 30)
+    }
+</script>
+</body>
+</html>

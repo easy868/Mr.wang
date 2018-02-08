@@ -9,7 +9,7 @@
     <title>jq 倒计时插件</title>
     <link rel="stylesheet" href="../js%20练习/css/reset.css">
     <style>
-        .count-down { text-align: center; border-bottom:1px solid #00b3ee; background: #333; color: #fff; line-height: 60px; font-size: 24px; }
+        .count-down { text-align: center; border-bottom: 1px solid #00b3ee; background: #333; color: #fff; line-height: 60px; font-size: 24px; }
     </style>
 </head>
 <body>
@@ -64,7 +64,6 @@
                     }
                 });
 
-
                 function addZero(t) {  //一位数加0
                     if (t < 10) {
                         return t = '0' + t;
@@ -78,7 +77,7 @@
         });
         $('.count-down').countDown(); //默认调用方法
         $('.a2').countDown();
-    })(jQuery)
+    })(jQuery);
 </script>
 </body>
 </html>

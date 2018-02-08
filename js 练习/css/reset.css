@@ -2,8 +2,9 @@
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, input, form, a, p, textarea, button { margin: 0; padding: 0; border: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 body { font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; color: #333; }
-ul, ol{ list-style: none; }
+ul, ol { list-style: none; }
 a { text-decoration: none; color: #333; }
 img { border: none; vertical-align: middle; }
+button {padding: 3px 5px;}
 .clearfix:after { display: block; height: 0; clear: both; visibility: hidden; content: ''; }
 /*重置样式   css reset*/

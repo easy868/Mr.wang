@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>详情页</title>
+    <link rel="stylesheet" href="css/Normalize.css">
+    <link rel="stylesheet" href="css/Details_page.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<body>
+<div id="box">
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-box">
+            <div class="logo-left">
+                <h3 class="logo">安驰无忧</h3>
+                <p class="position icon iconfont">上海</p>
+            </div>
+            <div class="login-register">
+                <a class="login icon iconfont" href="#">登录</a>/
+                <a class="register" href="#">注册</a>
+            </div>
+            <div class="search-box">
+                <input class="search-val" type="text" value=""/>
+                <div class="search-icon">
+                    <h3 class="icon iconfont icon-sousuo"></h3>
+                </div>
+            </div>
+            <ul class="nav">
+                <li><a class="nav-active" href="#">首页</a></li>
+                <li><a href="#">买车</a></li>
+                <li><a href="#">卖车</a></li>
+                <li><a href="#">个人中心</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Auction information -->
+    <div class="clearfix" id="Auction-information">
+        <div class="Auction-information-left">
+            <div style="height:400px; position:relative" class="swiper-container gallery-top">
+                <div class="swiper-pagination img-index-number"></div>
+                <div class="score-box">
+                    评级：
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                </div>
+                <p @click="scoreshow" class="icon iconfont Average-score">平均评分</p>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/pagelunb.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pagelunb.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/pagelunb.jpg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container gallery-thumbs">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/pagelunb.jpg"/></div>
+                    <div class="swiper-slide"><img src="images/pagelunb.jpg"/></div>
+                    <div class="swiper-slide"><img src="images/pagelunb.jpg"/></div>
+                </div>
+            </div>
+            <div v-if="score" class="Average-score-conter">
+                <div class="score-box">
+                    过往类似车辆评星：
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                </div>
+                <div class="score-box">
+                    此车为：
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                    <i class="icon iconfont icon-iconfontxingxing"></i>
+                </div>
+            </div>
+        </div>
+        <div class="Auction-information-right">
+            <h3 class="tit">大众-POLO 2014款 1.6L Cross POLO 自动东方红收是
+                法国皇室发过火双方各合适的到货他还是</h3>
+            <h4 class="text">说：割爱的痛.你不懂</h4>
+            <ul>
+                <li>
+                    <div class="list-left">
+                        <p>起拍价：<span>4575元</span></p>
+                        <p class="Minimum-Fare">最小加价：100元</p>
+                    </div>
+                    <button @click="modelStateFun" class="list-right" type="button">出价</button>
+                </li>
+                <li>
+                    <div class="list-left">
+                        <p>现在购买价：80万</p>
+                    </div>
+                    <button @click="modelTypeFun" class="list-right" type="button">现在购买价</button>
+                </li>
+                <li>
+                    <div class="list-left">
+                        <p>剩余时间： 3天 12：12：59</p>
+                    </div>
+                    <button class="list-right" type="button">自动出价</button>
+                </li>
+            </ul>
+            <div class="Assessment-box">
+                <p class="Assessment-tit">在线贷款评估 看看你能贷多少? ></p>
+                <a href="#">点击贷款评估</a>
+            </div>
+            <div class="Personal-information">
+                <div @click="Open" class="Personal-information-top">
+                    <img class="user-img" src="images/banner.jpg"/>
+                    <div class="Personal-user-box">
+                        <div class="Personal-user">
+                            <p class="Personal-name">赵蕾：<span>个人</span></p>
+                            <p class="Personal-Grade">等级：<i class="icon iconfont icon-zuanshi"></i>
+                                <i class="icon iconfont icon-zuanshi"></i></p>
+                        </div>
+                        <p class="verify">车辆已核实 2017-12-12 12:12 完成上架</p>
+                    </div>
+                    <p class="icon iconfont icon-right-1-copy"></p>
+                </div>
+                <h4 class="Promise icon iconfont">承诺此上架车辆无重大事故、水浸、火烧、调整里程表以及拼装等恶性事件</h4>
+            </div>
+            <div v-if="hideBox" class="hide-box">
+                <div class="hide">
+                    <p class="text-conter">
+                        市房管局大范甘迪反间谍法反间谍法电饭锅京东方的风格活动发的发改好的的风格活动发蚌埠.
+                        市房管局大范甘迪反间谍法反间谍法电饭锅京东方的风格活动发的发改好的的风格活动发蚌埠.
+                        市房管局大范甘迪反间谍法反间谍法电饭锅京东方的风格活动发的发改好的的风格活动发蚌埠.
+                        市房管局大范甘迪反间谍法反间谍法电饭锅京东方的风格活动发的发改好的的风格活动发蚌埠.
+                        市房管局大范甘迪反间谍法反间谍法电饭锅京东方的风格活动发的发改好的的风格活动发蚌埠.
+                    </p>
+                    <div class="comment-box">
+                        <h3 class="comment-box-tit">评论</h3>
+                        <ul>
+                            <li>
+                                <div class="user-img">
+                                    <img src="images/banner.jpg"/>
+                                    <span>564654163</span>
+                                </div>
+                                <p class="comment-text">因为选择的是上房服务，设计师沟通的时候非常耐心细致，考虑的很周到，给了很多建议。
+                                    期装修入住以后，感觉细节之处做的很惊喜。赞~</p>
+                                <p class="comment-time">2017-12-12 12:12:12</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="More" type="button">查看更多</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vehicle information -->
+    <div id="Vehicle-information">
+        <h3 class="Vehicle-information-tit">车辆信息</h3>
+        <div class="Vehicle-information-conter">
+            <ul>
+                <li>
+                    <h4 class="list-tit">基本信息</h4>
+                    <div class="list-conter">
+                        <p>车辆排放</p>
+                        <p>国四</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>使用性质</p>
+                        <p>非营运</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>年检到期</p>
+                        <p>2018-01-01</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>保险到期</p>
+                        <p>2018-01-15</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>保养情况</p>
+                        <p>4S店定期</p>
+                    </div>
+                </li>
+                <li>
+                    <h4 class="list-tit">基本信息</h4>
+                    <div class="list-conter">
+                        <p>车辆级别</p>
+                        <p>中型车</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>颜色</p>
+                        <p>黑色</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>车身结构</p>
+                        <p>4门 5座 轿车-三厢车</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>整备质量</p>
+                        <p>未知</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>轴距</p>
+                        <p>27400 mm</p>
+                    </div>
+                </li>
+                <li>
+                    <h4 class="list-tit">基本信息</h4>
+                    <div class="list-conter">
+                        <p>车辆级别</p>
+                        <p>中型车</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>颜色</p>
+                        <p>黑色</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>车身结构</p>
+                        <p>4门 5座 轿车-三厢车</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>整备质量</p>
+                        <p>未知</p>
+                    </div>
+                    <div class="list-conter">
+                        <p>轴距</p>
+                        <p>27400 mm</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button class="VehicleSeeMore" type="button">查看更多 ></button>
+    </div>
+    <!-- vehicle guarantee -->
+    <div id="vehicle-guarantee">
+        <div class="vehicle-guarantee-top">
+            <h3>车辆保障</h3>
+            <p>安驰认证</p>
+        </div>
+        <div class="vehicle-guarantee-conter">
+            <button class="View-the-details" type="button">查看详情</button>
+        </div>
+        <button class="more-Vehicle-report" type="button">查看车辆报告 ></button>
+    </div>
+    <!-- vehicle img tab -->
+    <div id="vehicle-img-tab">
+        <div id="tab">
+            <div class="tab-top">
+                <ul class="tab-top-ul">
+                    <li class="navstyle navlist">
+                        <p>车身照片</p>
+                    </li>
+                    <li class="navlist">
+                        <p>车辆照片</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-conte">
+                <ul class="list-conter " style="display:block;overflow:hidden">
+                    <!-- Swiper -->
+                    <div class="swiper-container" id="lb-one">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </ul>
+                <ul class="list-conter">
+                    <!-- Swiper -->
+                    <div class="swiper-container" id="lb-tow">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                            <div class="swiper-slide"><img src="images/lunb.jpg"/></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Recommended for you -->
+    <div id="Recommended-for-you">
+        <h3 class="Recommended-for-you-tit">为你推荐</h3>
+        <div class="Vehicle-purchase-conter clearfix">
+            <ul>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/va.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vb.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vc.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vd.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/va.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vb.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vc.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="Vehicle-img">
+                            <img src="images/vd.jpg"/>
+                            <div class="score-box">
+                                评级：
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                                <i class="icon iconfont icon-iconfontxingxing"></i>
+                            </div>
+                        </div>
+                        <h4 class="Vehicle-name">奔驰 E级 2.0T 自动 2016款</h4>
+                        <p class="Vehicle-data">2016年/6.7万公里</p>
+                        <div class="Price-comparison">
+                            <h3 class="Vehicle-Price">28.6万</h3>
+                            <p class="New-car-price">新车价：30万</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- footer -->
+    <div id="footer">
+        <div class="footer-box">
+            <div class="footer-conter">
+                <div class="footer-conter-left">
+                    <h2>安驰无忧 </h2>
+                    <h3>二手车平台</h3>
+                    <font>一个可以放心购买的服务平台，经济实惠 服务满意</font>
+                    <p> Copyright © 2016 All Rights Reserved 营业执照 京ICP备16045428号-1</p>
+                    <p> 京公网安备 11010502033918号 车伯乐(北京)信息科技有限公司</p>
+                </div>
+                <div class="footer-conter-right">
+                    <h2>400-345-3453</h2>
+                    <font>服务时间：周一至周五 9:00-21:00</font>
+                    <p>安驰无忧技术服务 (上海) 有限公司</p>
+                    <p>上海市徐汇区安驰无忧服务平台 诚信为你服务 愿与你全心全意</p>
+                </div>
+            </div>
+            <div class="footer-code">
+                <div class="footer-conter">
+                    <img src="images/code.jpg"/>
+                    <p>微信公众号</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 弹窗 -->
+    <model :modelType="modelState" @close="closeFun" v-if="showMask"></model>
+    <!-- 弹窗二 -->
+    <!-- <modelTow v-if="modelTowState"></modelTow> -->
+    <!-- <div id="modelTow"></div> -->
+</div>
+<script src="js/swiper.js"></script>
+<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+<script type="text/javascript">
+    Vue.component("model", {
+        props: ["modelType", "modelTypeTow"],
+        template:
+            `<div id="model">
+          <div id="Popup">
+            <div class="Popup-top">
+              <h3 class="tit">起拍底价</h3>
+              <p @click="TempClose" class="icon iconfont icon-guanbi"></p>
+            </div>
+            <div class="Bottom-price">
+              <h4 class="Bottom-price-tit">起拍底价</h4>
+              <h2 class="Bottom-price-val">8800元{{modelType}}</h2>
+            </div>
+            <div v-if="modelType" class="Input-amount">
+              输入金额
+              <input class="Input-amount-val" type="text"  value=""/>
+              <span>元</span>
+            </div>
+            <div v-if="{{modelTypeTow}}" class="Explain-box">
+              <p>说明：对自动出价简单说明 自动出价后您会一直出价，当超出你给出的心将不再出价 自动出价后您会一直出价，当超出你给出的心里最高级后，将超出你给出的心里最高级后，将不再出价</p>
+            </div>
+            <button @click="TempClose" class="confirm" type="button">确认</button>
+          </div>
+        </div>`,
+        methods: {
+            TempClose() {
+                this.$emit("close")
+            }
+        }
+    });
+    new Vue({
+        el: "#box",
+        data: {
+            hideBox: false,
+            score: false,
+            modelState: 1,
+            modelTypeTows: true,
+            showMask: false
+        },
+        methods: {
+            Open() {
+                this.hideBox = !this.hideBox
+            },
+            scoreshow() {
+                this.score = !this.score
+            },
+            closeFun() {
+                this.showMask = false
+            },
+            modelStateFun() {
+                this.modelState = true;
+                this.showMask = true;
+                // this.modelTypeTows = false;
+                console.log(this.modelState)
+            }
+            /*        ,
+                    modelTypeFun() {
+                        this.modelTypeTows = true;
+                        this.showMask = true;
+                        this.modelState = false;
+                    }*/
+        }
+    })
+</script>
+<script src="js/table.js"></script>
+<script>
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,
+        loop: true,
+        pagination: '.swiper-pagination',
+        paginationType: 'fraction',
+        loopedSlides: 5, //looped slides should be the same
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        touchRatio: 0.2,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        slideToClickedSlide: true
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+    var swiper = new Swiper('#lb-one', {
+        pagination: '.swiper-pagination',
+        paginationClickable: false,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev'
+    });
+    var swiper2 = new Swiper('#lb-tow', {
+        pagination: '.swiper-pagination',
+        paginationClickable: false,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev'
+    });
+    window.onload = function () {
+        new Tab("tab");
+    }
+</script>
+</body>
+</html>

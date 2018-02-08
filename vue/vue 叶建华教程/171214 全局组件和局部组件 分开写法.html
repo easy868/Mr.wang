@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>全局组件创建注册</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>组件分开写法</h2>
+    <hr>
+
+    <temp-a></temp-a>
+    <temp-b></temp-b>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    //    1.创建全局组件构造器
+    let tt = Vue.extend({
+        template: `<div>我是全局组件</div>`
+    });
+    //    1-1.全局注册组件
+    Vue.component('temp-a', tt);  //两个参数，前面是组件名，后面是组件构造器名
+    //    2.创建局部组件构造器
+    let tt2 = Vue.extend({
+        template: `<p>我是局部组件</p>`
+    });
+    //    2-2.局部注册组件,在new Vue components里注册
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '我是数据'
+        },
+        components: { //注册局部组件，只能在这个vue实例里使用
+            'temp-b': tt2
+        }
+    });
+
+</script>
+</body>
+</html>

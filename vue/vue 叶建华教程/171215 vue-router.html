@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue vue-router</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>页面路由</h2>
+    <hr>
+    <div>
+        <router-link to="/">html</router-link>
+        <router-link to="/css">css</router-link>
+        <router-link to="/js">js</router-link>
+        <router-view></router-view>
+    </div>
+</div>
+
+<template id="html">
+    <div>
+        <h2>html</h2>
+        <p>超文本标记语言</p>
+        <router-link to="basic">基础班</router-link>
+        <router-link to="big">大神版</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="css">
+    <div>
+        <h2>css</h2>
+        <p>样式</p>
+    </div>
+</template>
+<template id="js">
+    <div>
+        <h2>js</h2>
+        <p>脚本语言</p>
+    </div>
+</template>
+<template id="basic">
+    <div>
+        <h2>基础班</h2>
+        <p>基础教程</p>
+    </div>
+</template>
+<template id="big">
+    <div>
+        <h2>大神版</h2>
+        <p>大神进阶</p>
+    </div>
+</template>
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    const h5 = Vue.extend({
+        template: '#html'
+    });
+    const css = Vue.extend({
+        template: '#css'
+    });
+    const js = Vue.extend({
+        template: '#js'
+    });
+    const basic = Vue.extend({
+        template: '#basic'
+    });
+    const big = Vue.extend({
+        template: '#big'
+    });
+
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/',
+                component: h5,
+                children: [  //定义子路由
+                    {path: 'basic', component: basic},
+                    {path: 'big', component: big},
+                    {path: '/', redirect: 'basic'}
+                ]
+            },
+            {path: '/css', component: css},
+            {path: '/js', component: js},
+        ]
+    });
+    new Vue({
+        router,
+        el: '#app',
+        data: {
+            msg: '我是数据'
+        }
+    });
+</script>
+</body>
+</html>

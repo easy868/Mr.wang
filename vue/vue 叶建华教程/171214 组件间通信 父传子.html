@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue 组件间通信</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>组件间通信 父传子</h2>
+    <hr>
+    <!--给子组件传递数据-->
+    <my-temp msg="我要传数据1" msg2="我要传数据2"></my-temp>
+</div>
+<template id="temp1">   <!--组件通信，模板定义时要使用props里定义的数据-->
+    <div class="wrap">
+        <h3>我是子组件 {{msg}}</h3>
+        <p>我是数据 {{msg2}}</p>
+    </div>
+</template>
+
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.component('my-temp', {  //和全局注册组件一样，只不过template选项对应的value是template标签的选择器
+        template: '#temp1',
+        props: ['msg', 'msg2']    //定义props数组，需要传递的数据
+    });
+    new Vue({
+        el: '#app',
+        data: {}
+    });
+</script>
+</body>
+</html>

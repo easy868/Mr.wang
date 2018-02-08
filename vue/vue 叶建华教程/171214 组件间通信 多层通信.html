@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue 组件间通信 多层通信</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>组件间通信 多层通信</h2>
+    <hr>
+    <!--多层组件通信必须要动态绑定-->
+    <parent :mtitle="msg1" :mtext="msg2"></parent>
+</div>
+<template id="temp1">
+    <div class="wrap">
+        <h3>{{title}}</h3>
+    </div>
+</template>
+<template id="temp2">
+    <div class="wrap">
+        <p>{{text}}</p>
+    </div>
+</template>
+<template id="parent">
+    <div>
+        <p>我是父组件里的内容</p>
+        <c1 :title="mtitle"></c1>
+        <c2 :text="mtext"></c2>
+    </div>
+</template>
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    let child1 = Vue.extend({
+        template: '#temp1',
+        props: ['title']
+    });
+    let child2 = Vue.extend({
+        template: '#temp2',
+        props: ['text']
+    });
+    Vue.component('parent', {
+        template: '#parent',
+        components: {
+            'c1': child1,
+            'c2': child2,
+        },
+        props: ['mtitle', 'mtext']
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            msg1: '我是data的数据1',
+            msg2: '我是data的数据2',
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue 测试页面</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <p v-if="seen">{{msg}}</p>
+    <p v-else>{{msg2}}</p>
+    <my-demo v-for="item in todos" :todo="item"></my-demo>
+    <button :disabled="isHave" :class="[]" :style="styleObj">按钮</button>
+    <p v-if="1===1" key="hai">v-if </p>
+    <p v-if="1!=2">v-else-if</p>
+    <p @click="change($event)">v-else</p>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.component('my-demo', {
+        template: `<p>{{todo.text}}</p>`,
+        props: ['todo']
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '我是msg',
+            msg2: 'msg2在这里',
+            seen: false,
+            todos: [
+                {text: '老大'},
+                {text: '老二'},
+                {text: '老三'}
+            ],
+            isHave: null,
+            styleObj: {
+                fontSize: '40px',
+                fontWeight: 700
+            }
+        },
+        methods: {
+            change(ele) {
+                alert(ele)
+            }
+        },
+        computed: {
+            reverseMsg() {
+            },
+            classObj() {
+                return {}
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>购物车练习</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/shopCart.css">
+</head>
+<body>
+<div id="app" v-cloak>  <!--v-cloak属性作用：刷新时不显示{{}}，配合 [v-cloak]{display:none}使用-->
+    <!--头部区域-->
+    <div class="header">
+        <a href="index.html" class="icon_back"></a>
+        <h3>购物车</h3>
+        <a href="" class="icon_menu"></a>
+    </div>
+    <!--安全提示-->
+    <div class="jd_safe_tip">
+        <p class="tip_word">您正在安全购物环境中，请放心购物</p>
+    </div>
+    <!--中间的列表-->
+    <main class="jd_shopCart_list">
+        <section v-for="shop in goodsList">
+            <div class="shopCart_list_title">
+                <span class="cart_logo"></span>
+                <span class="cart_title">京东自营</span>
+                <span class="cart_sale">您享受满100元免运费服务</span>
+            </div>
+            <div class="shopCart_list_con">
+                <div class="list_con_left">
+                    <a href="javascript:;" class="cart_check_box" :checked="shop.checked" @click="selectOne(shop)"></a>
+                </div>
+                <div class="list_con_right">
+                    <div class="shop_img">
+                        <img :src="shop.shopImage" :alt="shop.shopName">
+                    </div>
+                    <div class="shop_con">
+                        <a href="">{{shop.shopName}}</a>
+                        <div class="shop_price">
+                            <div class="singer">单价：{{shop.shopPrice|formatMoney}}</div>
+                            <div class="total">总价：{{shop.shopPrice*shop.shopNumber|formatMoney}}</div>
+                        </div>
+                        <div class="shop_deal">
+                            <div class="shop_deal_left">
+                                <span @click="changeNum(shop,false)">-</span>
+                                <input type="tel" value="shop.shopNumber" v-model="shop.shopNumber">
+                                <span @click="changeNum(shop,true)">+</span>
+                            </div>
+                            <div class="shop_deal_right">
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--底部通栏-->
+    <div id="tab_bar">
+        <div class="tab-bar-left">
+            <a href="javascript:;" class="cart_check_box" :checked="selectAllTag" @click="selectAll"></a>
+            <span>全选</span>
+            <div class="select-all">
+                合计：<span class="total-price">{{totalMoney|formatMoney}}</span>
+            </div>
+        </div>
+        <div class="tab-bar-right">
+            <a href="##" class="pay">去结算</a>
+        </div>
+    </div>
+    <!--弹出面板-->
+    <div class="panel panel_is_show">
+        <div class="panel_content">
+            <div class="panel_title">您确认删除这个商品吗?</div>
+            <div class="panel_footer">
+                <button class="cancel">取消</button>
+                <button class="submit">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="lib/vue.js"></script>
+<!--<script src="lib/vue-resource.js"></script>-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/base.js"></script>
+<!--<script src="js/shopCart.js"></script>-->
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            goodsList: [],  //商品列表存储
+            totalMoney: 0,   //总价
+            selectAllTag: false   //全选
+        },
+        mounted() {
+            this.getData()   //初始化数据
+        },
+        methods: {
+            getData() {     //获取json数据,使用axios
+                axios.get('data/cart.json').then(response => {
+                    this.goodsList = response.data.allShops.shopList;
+                    console.log(this.goodsList);
+                })
+            },
+            changeNum(shop, tag) {
+                if (tag) {
+                    shop.shopNumber++
+                } else {
+                    shop.shopNumber--;
+                    if (shop.shopNumber <= 1) {
+                        shop.shopNumber = 1;
+                    }
+                }
+                this.fnTotalMoney()
+            },
+            selectAll() {
+                this.selectAllTag = !this.selectAllTag;  //全选时全选按钮变红
+                this.goodsList.forEach(item => {   //全选时所有按钮变红
+                    if (typeof item.checked === 'undefined') {
+                        this.$set(item, 'checked', true);
+                    } else {
+                        item.checked = this.selectAllTag;
+                    }
+                });
+                this.fnTotalMoney();
+            },
+            selectOne(shop) {
+                if (typeof shop.checked === 'undefined') {
+                    this.$set(shop, 'checked', true)
+                } else {
+                    shop.checked = !shop.checked;
+                }
+                let flag = true;
+                this.goodsList.forEach(shop => {
+                    if (!shop.checked) {
+                        flag = false;
+                    }
+                });
+                this.selectAllTag = flag;
+                this.fnTotalMoney()
+            },
+            fnTotalMoney() {
+                let totalPri = 0;
+                this.goodsList.forEach(shop => {
+                    if (shop.checked) {
+                        totalPri += shop.shopPrice * shop.shopNumber;
+                    }
+                });
+                this.totalMoney = totalPri;
+            }
+        },
+        filters: {
+            formatMoney(m) {    //格式化金钱
+                return '¥ ' + m.toFixed(2);
+            }
+        }
+    })
+</script>
+</body>
+</html>

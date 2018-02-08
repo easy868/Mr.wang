@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta content="IE=dege,chrom=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>Cart</title>
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/checkout.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
+    <style type="text/css">
+        .quentity input {
+            width: 40px;
+            padding: 5px 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="checkout" id="app">
+    <div>
+        <div class="container">
+            <div class="cart">
+                <div class="checkout-title">
+                    <span>购物车</span>
+                </div>
+
+                <!-- table -->
+                <div class="item-list-wrap">
+                    <div class="cart-item">
+                        <div class="cart-item-head">
+                            <ul>
+                                <li>商品信息</li>
+                                <li>商品金额</li>
+                                <li>商品数量</li>
+                                <li>总金额</li>
+                                <li>编辑</li>
+                            </ul>
+                        </div>
+                        <ul class="cart-item-list" v-for="item in productList">
+                            <li>
+                                <div class="cart-tab-1">
+                                    <div class="cart-item-check">
+                                        <a href="javascript:void 0" class="item-check-btn" :class="{'check':item.checked}" @click="check(item)">
+                                            <svg class="icon icon-ok">
+                                                <use xlink:href="#icon-ok"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="cart-item-pic">
+                                        <img :src="item.productImage" alt="烟">
+                                    </div>
+                                    <div class="cart-item-title">
+                                        <div class="item-name">{{item.productName}}</div>
+                                    </div>
+                                    <div class="item-include">
+                                        <dl>
+                                            <dt>赠送:</dt>
+                                            <dd v-for="part in item.parts">{{part.partsName}}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="cart-tab-2">
+                                    <div class="item-price">{{item.productPrice |formatMoney}}</div>
+                                </div>
+                                <div class="cart-tab-3">
+                                    <div class="item-quantity">
+                                        <div class="select-self select-self-open">
+                                            <div class="quantity">
+                                                <a href="javascript:void 0" @click="changeMoney(item,0)">-</a>
+                                                <input type="text" value="0" v-model="item.productQuantity">
+                                                <a href="javascript:void 0" @click="changeMoney(item,1)">+</a>
+                                            </div>
+                                        </div>
+                                        <div class="item-stock">有货</div>
+                                    </div>
+                                </div>
+                                <div class="cart-tab-4">
+                                    <div class="item-price-total">{{item.productPrice*item.productQuantity | format('元')}}</div>
+                                </div>
+                                <div class="cart-tab-5">
+                                    <div class="cart-item-operation">
+                                        <a href="javascript:void 0" class="item-edit-btn">
+                                            <svg class="icon icon-del">
+                                                <use xlink:href="#icon-del"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <div class="cart-foot-wrap">
+                    <div class="cart-foot-l">
+                        <div class="item-all-check" style="margin-right: 10px;" @click="checkAll(true)">
+                            <a href="javascript:void 0">
+                                <span class="item-check-btn" :class="{check:checkAllFlag}">
+                                  <svg class="icon icon-ok"><use xlink:href="#icon-ok"></use></svg>
+                                </span>
+                                <span>全选</span>
+                            </a>
+                        </div>
+                        <div class="item-all-del" @click="checkAll(false)">
+                            <a href="javascript:void 0" class="item-del-btn">
+                                <span>取消全选</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="cart-foot-r">
+                        <div class="item-total">
+                            Item total: <span class="total-price"></span>
+                        </div>
+                        <div class="next-btn-wrap">
+                            <a href="javascrit:;" class="btn btn--red" style="width: 200px">结账</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-modal modal-msg md-modal-transition" id="showModal">
+            <div class="md-modal-inner">
+                <div class="md-top">
+                    <button class="md-close">关闭</button>
+                </div>
+                <div class="md-content">
+                    <div class="confirm-tips">
+                        <p id="cusLanInfo">你确认删除此订单信息吗?</p>
+                    </div>
+                    <div class="btn-wrap col-2">
+                        <button class="btn btn--m" id="btnModalConfirm">Yes</button>
+                        <button class="btn btn--m btn--red" id="btnModalCancel">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="js/lib/vue-resource.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            productList: [],   //商品数组
+            checkAllFlag: false
+        },
+        mounted() {
+            this.cartView()
+        },
+        filters: {  //局部过滤器
+            formatMoney(v) {
+                return '¥ ' + v.toFixed(2)
+            }
+        },
+        methods: {
+            cartView() {
+                this.$http.get('data/cartData.json').then((res) => {    //获取数据  this.$http.get().then()；可以使用es6箭头函数
+                    this.productList = res.data.result.list;
+                });
+            },
+            check(item) {
+                if (typeof item.checked === 'undefined') {
+                    this.$set(item, 'checked', true);
+                } else {
+                    item.checked = !item.checked;
+                }
+                for (let i = 0; i < this.productList.length; i++) {
+                    if (this.productList[i].checked) {
+                        this.checkAllFlag = true;
+                    } else {
+                        this.checkAllFlag = false;
+                        break;
+                    }
+                }
+            },
+            checkAll(flag) {
+                this.checkAllFlag = flag;
+                this.productList.forEach((v, i) => {
+                    if (typeof v.checked === 'undefined') {
+                        this.$set(v, 'checked', this.checkAllFlag);
+                    } else {
+                        v.checked = this.checkAllFlag;
+                    }
+                })
+            },
+            changeMoney(p, way) {
+                if (way) {
+                    p.productQuantity++;
+                } else {
+                    p.productQuantity--;
+                    if (p.productQuantity <= 1) {
+                        p.productQuantity = 1;
+                    }
+                }
+            }
+        }
+    });
+    Vue.filter('format', function (v, t) {  //全局过滤器
+        return '¥ ' + v.toFixed(2) + t;
+    });
+</script>
+</body>
+</html>

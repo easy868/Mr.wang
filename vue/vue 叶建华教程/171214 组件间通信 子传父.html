@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue 组件间通信 子传父</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>组件间通信 子传父</h2>
+    <hr>
+    <!--子组件使用v-on方法（简写：@）接收消息，然后触发父组件的方法-->
+    <my-btn @add="changeTotal"></my-btn>
+    <my-btn @add="changeTotal"></my-btn>
+    <my-btn @add="changeTotal"></my-btn>
+    <p>总共点击 {{total}} 次</p>
+</div>
+<template id="temp1">   <!--组件通信，模板定义时要使用props里定义的数据-->
+    <button type="button" @click="add">点击 {{num}} 次</button>
+</template>
+
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.component('my-btn', {  //和全局注册组件一样，只不过template选项对应的value是template标签的选择器
+        template: '#temp1',
+        data() {
+            return {
+                num: 0
+            }
+        },
+        methods: {
+            add() {  //this.$emit('方法名')，把方法发射出去，告诉外界触发了
+                this.num++;
+                this.$emit('add');
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            changeTotal() {   //外界方法操作外界数据
+                this.total++;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Vue template和script</title>
+    <style>
+        hr { height: 1px; background: #ddd; border: none; }
+        #app { margin: 100px auto; padding: 0 20px 20px 20px; width: 600px; border-radius: 4px; border: 1px solid #e2e2e2; overflow: hidden; box-shadow: 2px 2px 10px rgba(0, 0, 0, .2); }
+    </style>
+</head>
+<body>
+<!--视图渲染区-->
+<div id="app">
+    <h2>template和script</h2>
+    <hr>
+    <my-temp></my-temp>
+    <my-temp2></my-temp2>
+</div>
+<template id="temp1">
+    <div class="wrap">
+        <h4>我是template模板标题</h4>
+        <p>我是模板内容</p>
+    </div>
+</template>
+<script type="text/template" id="temp2">
+    <div class="wrap">
+        <h4>scripte标签模板</h4>
+        <p>script script</p>
+    </div>
+</script>
+<script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.component('my-temp', {  //和全局注册组件一样，只不过template选项对应的value是template标签的选择器
+        template: '#temp1'
+    });
+    Vue.component('my-temp2', {  //script标签包裹的模板和template一样，只不过多了个type="text/template"
+        template: '#temp2'
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '我是数据'
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

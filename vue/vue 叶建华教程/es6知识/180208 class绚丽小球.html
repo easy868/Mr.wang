@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>class 绚丽小球</title>
+    <style>
+        body {text-align: center;}
+        .box::after{content: '我是after';display: inline-block;}
+        .cao{display: none;}
+        .box:after:hover + .cao{display: block;}
+    </style>
+</head>
+<body>
+<canvas id="canvas">当前浏览器不支持canvas</canvas>
+<div class="box">萨比啊</div>
+<div class="cao">干死你</div>
+<script>
+    'use strict';
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 1000;
+    canvas.height = 500;
+    canvas.style.background = '#333';
+    canvas.style.marginTop = '50px';
+
+    class Ball {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.r = 50;
+        }
+
+        render() {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    let ball = new Ball(50, 50, '#f00');
+    ball.render();
+</script>
+</body>
+</html>

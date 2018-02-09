@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>let和const</title>
+</head>
+<body>
+
+
+<script>
+    'use strict';
+    /*
+    let 作用域只限于当前代码块；
+    let 声明的变量作用域不会被提升；
+   let 在相同的作用域下变量不能重复声明;
+   const 声明后就不能修改；
+   */
+    {
+       const a=1;
+       a++;
+        console.log(a);
+    }
+
+</script>
+</body>
+</html>

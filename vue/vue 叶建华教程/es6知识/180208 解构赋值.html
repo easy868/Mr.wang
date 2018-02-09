@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>解构赋值</title>
+</head>
+<body>
+
+<script>
+    'use strict';
+    // 基本用法，一一对应
+    let [name, age, sex] = ['老王', 18, '男'];
+    console.log(name + '__' + age + '__' + sex);
+    // 对象的解构赋值
+    let {name2, age2, sex2} = {name2: '老二', age2: 28, sex2: '女'};
+    console.log(name2 + '__' + age2 + '__' + sex2);
+    //数组的解构赋值
+    let [a1, [a2, a3, [a4, a5]]] = [1, [2, 3, [4, 5]]];
+    console.log(a1, a2, a3, a4, a5);
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>数据集合 set和map</title>
+</head>
+<body>
+
+<script>
+    'use strict';
+    // 一个属性size，四个方法 add,delete,has,clear
+    let set = new Set(['张三', '李四', '王五']);
+    console.log(set);
+    set.add('赵六');  //add方法
+    console.log(set);
+    set.delete('张三'); //delete方法
+    console.log(set)
+    // map  类似于对象，本质上是键值对的集合，"键"不局限于字符串，各种类型的值(包括对象)都可以当做键
+    // 对象 "字符串：值" ，map "值：值"，是一种更加完善的Hash结构实现
+    let obj1 = {a1: 111}, obj2 = {a2: 222};
+    let map = new Map([
+        [obj1,'我是1'],
+        [obj2,'我是2']
+    ]);
+    console.log(map);
+</script>
+</body>
+</html>
